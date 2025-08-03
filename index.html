@@ -1,0 +1,87 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minha Landing</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+
+    <!-- Google Tag Manager -->
+    <script>
+      ;(function (w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : ''
+        j.async = true
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+        f.parentNode.insertBefore(j, f)
+      })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX')
+    </script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+
+    <!-- Hero -->
+    <header class="p-6 bg-gray-100 text-center">
+      <h1 class="text-4xl font-bold">Bem-vindo à minha Landing</h1>
+      <p class="mt-2 text-lg text-gray-600">
+        Aqui vai o subtítulo chamativoaaaaaaaaas
+      </p>
+      <button
+        onclick="fbq('track', 'Lead');"
+        class="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg"
+      >
+        Quero saber mais
+      </button>
+    </header>
+
+    <!-- Carrossel -->
+    <section class="my-10 max-w-4xl mx-auto">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="img1.jpg" class="w-full" /></div>
+          <div class="swiper-slide"><img src="img2.jpg" class="w-full" /></div>
+          <div class="swiper-slide"><img src="img3.jpg" class="w-full" /></div>
+        </div>
+        <!-- Botões -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper('.swiper', {
+        loop: true,
+        pagination: { el: '.swiper-pagination' },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      })
+    </script>
+  </body>
+</html>
