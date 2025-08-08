@@ -1,87 +1,1470 @@
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minha Landing</title>
-
-    <!-- Tailwind -->
+    <title>Minha Vida + Perto de Deus</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Swiper CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
-    />
+    <style>
+      @font-face {
+        font-family: 'Morally';
+        src: url('fonts/Morally.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    <!-- Google Tag Manager -->
+      @font-face {
+        font-family: 'ProductSans';
+        src: url('fonts/ProductSans.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      .fade-in-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .fade-in-title {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in-title.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Estilos do carrossel */
+      .carousel-container {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 200%;
+      }
+
+      .carousel-slide {
+        width: 50%;
+        flex-shrink: 0;
+      }
+
+      .nav-arrow {
+        background: rgba(139, 21, 56, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+      }
+
+      .nav-arrow:hover {
+        background: rgba(139, 21, 56, 1);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .nav-arrow svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+      }
+
+      .nav-arrow.prev {
+        left: -30px;
+      }
+
+      .nav-arrow.next {
+        right: -30px;
+      }
+
+      .card-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+
     <script>
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : ''
-        j.async = true
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX')
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              burgundy: '#8B1538',
+              'light-purple': '#E8D5E8',
+              'dark-purple': '#6B46C1',
+            },
+            fontFamily: {
+              Morally: ['Morally', 'system-ui', '-apple-system', 'sans-serif'],
+              sans: ['ProductSans', 'system-ui', '-apple-system', 'sans-serif'],
+            },
+          },
+        },
+      }
     </script>
   </head>
+
   <body class="bg-white text-gray-900">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe>
-    </noscript>
+    <!-- PROMESSA (HOME PAGE)--------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24"
+      style="
+        background-image: url('imgs/pattern-home.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#ebd8dd] to-pink-200/80"
+      ></div>
 
-    <!-- Hero -->
-    <header class="p-6 bg-gray-100 text-center">
-      <h1 class="text-4xl font-bold">Bem-vindo à minha Landing</h1>
-      <p class="mt-2 text-lg text-gray-600">
-        Aqui vai o subtítulo chamativoaaaaaaaaas
-      </p>
-      <button
-        onclick="fbq('track', 'Lead');"
-        class="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg"
+      <!-- Container principal sem padding-top -->
+      <div
+        class="container mx-auto px-6 pt-6 relative z-10 h-full flex flex-col"
       >
-        Quero saber mais
-      </button>
-    </header>
+        <!-- Header com padding-top apenas aqui -->
+        <header class="flex justify-between items-start mb-0 pt-10">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <img
+              src="imgs/logomarca.png"
+              alt="Minha Vida + Perto de Deus"
+              class="h-16 w-auto"
+            />
+          </div>
 
-    <!-- Carrossel -->
-    <section class="my-10 max-w-4xl mx-auto">
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="img1.jpg" class="w-full" /></div>
-          <div class="swiper-slide"><img src="img2.jpg" class="w-full" /></div>
-          <div class="swiper-slide"><img src="img3.jpg" class="w-full" /></div>
+          <!-- Data do Evento -->
+          <div class="text-right flex items-center">
+            <div class="items-center text-burgundy mb-1">
+              <span class="font-semibold">01, 03 e 04 de Setembro</span>
+              <p class="text-burgundy italic">100% ao vivo pelo meeting</p>
+            </div>
+            <img
+              src="imgs/calendar.svg"
+              alt="calerdar"
+              class="h-11 w-auto ml-5"
+            />
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="grid lg:grid-cols-2 gap-8 items-center flex-1 relative">
+          <!-- Left Content -->
+          <div class="z-20">
+            <!-- Main Headline -->
+            <h1
+              class="text-4xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-8 font-Morally"
+            >
+              3 DIAS PARA SE APROXIMAR DE DEUS COM LEVEZA E CONSTÂNCIA E CRIAR
+              UM PLANO QUE CABE NA SUA ROTINA
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-xl lg:text-2xl text-gray-700 mb-14">
+              Uma metodologia prática e validada para te aproximar de Deus e
+              viver uma espiritualidade que faz sentido na vida real.
+            </p>
+
+            <!-- CTA Button -->
+            <button
+              onclick="fbq('track', 'Lead');"
+              class="bg-burgundy hover:bg-red-800 text-white text-2xl px-6 py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally"
+            >
+              COMPRAR INGRESSO | LOTE 1
+            </button>
+          </div>
+
+          <!-- Right Content - Image Container -->
+          <div class="relative h-full">
+            <!-- Container absoluto que vai até o final da seção -->
+            <div class="absolute bottom-0 left-[20%] h-full w-full">
+              <img
+                src="imgs/paola-home.png"
+                alt="@paolamilbauer"
+                class="absolute bottom-0 right-0 h-full w-auto object-contain object-bottom max-w-none"
+                style="transform-origin: bottom right"
+              />
+            </div>
+          </div>
         </div>
-        <!-- Botões -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
       </div>
     </section>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- CAMINHO(como você vai...)--------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24 bg-[#751133] flex flex-col items-center justify-around"
+    >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-opacity-[0%]"
+        style="
+          background-image: url('imgs/pattern-xadrez.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          opacity: 5%;
+        "
+      ></div>
+
+      <!-- Container principal -->
+      <div
+        id="workshop-section"
+        class="relative z-10 flex flex-col items-center justify-around h-[80%]"
+      >
+        <!-- Título principal -->
+        <h1
+          id="main-title"
+          class="fade-in-title text-white text-4xl md:text-5xl font-bold text-center mb-16 leading-tight font-Morally"
+        >
+          NESTE WORKSHOP, VOCÊ IRÁ <br />
+          SE APROXIMAR DE DEUS AO:
+        </h1>
+
+        <!-- Grid de cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          <!-- Card 1 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              1
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Identificar</span> o que tem te afastado
+              da presença de Deus
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              2
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Enxergar as distrações</span> que esvaziam
+              sua fé e seu tempo
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              3
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Aprender ferramentas</span> simples para
+              viver sua espiritualidade no dia a dia
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              4
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              Aprender como
+              <span class="font-bold">aprofundar sua leitura bíblica</span>
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              5
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Organizar sua vida devocional</span> com
+              leveza e direção
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              6
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              Dar
+              <span class="font-bold">passos reais p/ manter constância</span>
+              na sua caminhada com Deus
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERCEIRA PAGINA(essa jornada é para você que:)-------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24"
+      style="
+        background-image: url('imgs/pattern-home.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#ebd8dd] to-pink-200/80"
+      ></div>
+
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center h-full"
+      >
+        <!-- Título principal -->
+        <h1
+          class="text-burgundy text-4xl md:text-5xl font-bold text-center mb-16 leading-tight font-Morally"
+        >
+          ESSA JORNADA É PARA VOCÊ QUE:
+        </h1>
+        <div class="w-full flex justify-center items-center">
+          <button id="prevBtn" class="prev" style="opacity: 0">
+            <img
+              src="imgs/icons/seta.svg"
+              alt="seta"
+              class="h-11 w-auto mr-5 rotate-180"
+            />
+          </button>
+          <!-- Carrossel Container -->
+          <div class="carousel-container relative max-w-6xl w-full">
+            <!-- Seta Anterior (inicialmente oculta) -->
+
+            <!-- Wrapper do carrossel -->
+            <div id="carouselWrapper" class="carousel-wrapper">
+              <!-- Slide 1 - Primeiros 3 cards -->
+              <div class="carousel-slide">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-14">
+                  <!-- Card 1 -->
+                  <div
+                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
+                  >
+                    <!-- Ícone de floco de neve -->
+                    <div class="card-icon">
+                      <img
+                        src="imgs/icons/gelo.svg"
+                        alt="gelo"
+                        class="h-20 w-auto"
+                      />
+                    </div>
+                    <p class="text-white text-2xl leading-relaxed text-center">
+                      Sente que sua fé esfriou, mas não quer mais viver distante
+                      de Deus
+                    </p>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div
+                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
+                  >
+                    <div class="card-icon">
+                      <!-- Ícone de rosto preocupado -->
+                      <img
+                        src="imgs/icons/culpada.svg"
+                        alt="gelo"
+                        class="h-20 w-auto"
+                      />
+                    </div>
+                    <p class="text-white text-2xl leading-relaxed text-center">
+                      Você começa, mas não consegue continuar... e isso só te
+                      deixa mais culpada
+                    </p>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div
+                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
+                  >
+                    <div class="card-icon">
+                      <!-- Ícone de coração -->
+                      <img
+                        src="imgs/icons/coracao.svg"
+                        alt="gelo"
+                        class="h-20 w-auto"
+                      />
+                    </div>
+                    <p class="text-white text-2xl leading-relaxed text-center">
+                      A rotina, o cansaço ou a ansiedade têm roubado seu tempo e
+                      seu coração
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 - Últimos 3 cards -->
+              <div class="carousel-slide">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-14">
+                  <!-- Card 4 -->
+                  <div
+                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
+                  >
+                    <div class="card-icon">
+                      <!-- Ícone de livro -->
+                      <img
+                        src="imgs/icons/interrogacoes.svg"
+                        alt="gelo"
+                        class="h-20 w-auto"
+                      />
+                    </div>
+                    <p class="text-white text-2xl leading-relaxed text-center">
+                      Quer aprender a ler a Bíblia de forma mais profunda e
+                      significativa
+                    </p>
+                  </div>
+
+                  <!-- Card 5 -->
+                  <div
+                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
+                  >
+                    <div class="card-icon">
+                      <!-- Ícone de calendário -->
+                      <img
+                        src="imgs/icons/setas.svg"
+                        alt="gelo"
+                        class="h-20 w-auto"
+                      />
+                    </div>
+                    <p class="text-white text-2xl leading-relaxed text-center">
+                      Deseja organizar sua vida devocional de forma prática e
+                      sustentável
+                    </p>
+                  </div>
+
+                  <!-- Card 6 -->
+                  <div
+                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
+                  >
+                    <div class="card-icon">
+                      <!-- Ícone de estrela -->
+                      <img
+                        src="imgs/icons/olhos.svg"
+                        alt="gelo"
+                        class="h-20 w-auto"
+                      />
+                    </div>
+                    <p class="text-white text-2xl leading-relaxed text-center">
+                      Quer uma espiritualidade que faça sentido na sua vida
+                      real, sem pressão ou culpa
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Seta Próximo (inicialmente visível) -->
+          <button id="nextBtn" class="next">
+            <img
+              src="imgs/icons/seta.svg"
+              alt="calerdar"
+              class="h-11 w-auto ml-5"
+            />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUARTA PAGINA (O que você vai viver no workshop) -------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24 flex flex-col"
+      style="
+        background-image: url('imgs/fundo-paola-degrade.jpg');
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+      "
+    >
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center h-full max-w-6xl mx-auto pt-[20vh]"
+      >
+        <!-- Título principal -->
+        <h1
+          class="text-white text-4xl md:text-5xl font-bold text-center mb-16 leading-tight"
+        >
+          O QUE VOCÊ VAI VIVER NO<br />
+          <span
+            class="inline-flex items-center gap-4 text-[#F9DBBD] font-Morally text-4xl md:text-7xl"
+          >
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor"
+              class="h-12 w-auto"
+            />
+            WORKSHOP
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor"
+              class="h-12 w-auto"
+            />
+          </span>
+        </h1>
+
+        <!-- Card com conteúdo -->
+        <div class="bg-[#f291a6] rounded-3xl p-16 shadow-lg max-w-5xl w-full">
+          <!-- Subtítulo -->
+          <h2
+            class="text-burgundy text-3xl md:text-4xl font-bold mb-8 font-Morally"
+          >
+            AS DISTRAÇÕES DO DIA A DIA E O TREINO DO CORAÇÃO
+          </h2>
+
+          <!-- Texto descritivo -->
+          <p class="text-xl md:text-2xl leading-relaxed">
+            Você vai reconhecer o que desvia sua atenção e aprender como
+            cultivar a presença de Deus por meio de disciplinas espirituais
+            possíveis e transformadoras.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRONOGRAMA DO WORKSHOP -------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24 bg-[#751133] flex flex-col items-center justify-center"
+    >
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col lg:flex-row items-center justify-center h-full max-w-6xl w-full"
+      >
+        <!-- Left Content -->
+        <div
+          class="lg:w-1/2 text-white mb-8 lg:mb-0 lg:mt-6 flex flex-col justify-center"
+        >
+          <!-- Logo e Data -->
+          <div class="flex items-center mb-6">
+            <img src="imgs/icons/mvpd.svg" alt="flor" class="h-16 w-auto" />
+            <div class="flex flex-col ml-3">
+              <p class="text-2xl font-semibold">01, 03 e 04 de Setembro</p>
+              <p class="text-xl italic">100% ao vivo pelo meeting</p>
+            </div>
+          </div>
+
+          <!-- Título principal -->
+          <h1 class="text-5xl lg:text-6xl font-bold mb-8">
+            CRONOGRAMA DO<br />
+            <span class="text-[#F9DBBD] font-normal font-Morally text-8xl"
+              >WORKSHOP</span
+            >
+          </h1>
+
+          <!-- Subtítulo -->
+          <p class="text-xl lg:text-2xl italic">
+            Todos os dias seguirão esse cronograma
+          </p>
+        </div>
+
+        <!-- Right Content - Cronograma -->
+        <div class="lg:w-1/2 flex flex-col pl-[10vw]">
+          <!-- Ícone flor -->
+          <div class="mb-12">
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor decorativa"
+              class="h-20 w-auto"
+            />
+          </div>
+
+          <!-- Horários -->
+          <div class="text-white space-y-4">
+            <div class="text-3xl lg:text-4xl font-light">
+              <span class="font-bold">19:30</span> - Início
+            </div>
+            <div class="text-3xl lg:text-4xl font-light">
+              <span class="font-bold">21:00</span> - Pausa
+            </div>
+            <div class="text-3xl lg:text-4xl font-light">
+              <span class="font-bold">21:15</span> - Retorno
+            </div>
+            <div class="text-3xl lg:text-4xl font-light">
+              <span class="font-bold">22:00</span> - Encerramento
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOVA SEÇÃO: PREÇOS DO WORKSHOP -------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24 flex flex-col items-center justify-center"
+      style="background: linear-gradient(180deg, #751133 0%, #b91654 100%)"
+    >
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center h-4/5 max-w-5xl w-full"
+      >
+        <!-- Título principal -->
+        <h1
+          class="text-white text-5xl md:text-xl text-center leading-tight -mt-8"
+        >
+          <span class="font-semibold md:text-5xl">QUANTO CUSTA O</span><br />
+          <span class="text-6xl md:text-7xl text-[#F9DBBD] font-Morally"
+            >WORKSHOP?</span
+          >
+        </h1>
+
+        <!-- Card de preços -------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div
+          class="bg-[#F291A6] rounded-3xl p-12 shadow-2xl w-full max-w-5xl relative mt-10"
+        >
+          <!-- Layout em duas colunas -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-8">
+            <!-- Coluna da Esquerda - Data e Preço -->
+            <div class="flex flex-col items-center">
+              <!-- Data e informações do evento -->
+              <div class="flex items-center">
+                <img
+                  src="imgs/calendar.svg"
+                  alt="calerdar"
+                  class="h-11 w-auto mr-5"
+                />
+                <div class="items-center text-burgundy mb-1">
+                  <span class="font-semibold text-xl"
+                    >01, 03 e 04 de Setembro</span
+                  >
+                  <p class="text-burgundy italic text-xl">
+                    100% ao vivo pelo meeting
+                  </p>
+                </div>
+              </div>
+
+              <!-- Preço principal -->
+              <div class="text-left">
+                <div
+                  class="text-burgundy font-semibold text-8xl md:text-7xl font-Morally leading-none tracking-widest"
+                >
+                  R$ 19,90
+                </div>
+              </div>
+            </div>
+
+            <!-- Coluna da Direita - Lista de benefícios -->
+            <div class="space-y-2">
+              <!-- Benefício 1 -->
+              <div class="flex items-center">
+                <div
+                  class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-lg">Acesso aos 3 encontros ao vivo</p>
+              </div>
+
+              <!-- Benefício 2 -->
+              <div class="flex items-center">
+                <div
+                  class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-lg">Ensino teológico profundo e acessível</p>
+              </div>
+
+              <!-- Benefício 3 -->
+              <div class="flex items-center">
+                <div
+                  class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-lg">Um plano devocional prático (em PDF)</p>
+              </div>
+
+              <!-- Benefício 4 -->
+              <div class="flex items-center">
+                <div
+                  class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-lg">
+                  Materiais complementares para aplicar o conteúdo
+                </p>
+              </div>
+
+              <!-- Benefício 5 -->
+              <div class="flex items-center">
+                <div
+                  class="w-6 h-6 bg-pink-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-lg">
+                  Um espaço leve, real e transformador para recomeçar com Deus
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botão de compra posicionado metade fora da box -->
+          <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+            <button
+              class="bg-[#F9DBBD] hover:bg-yellow-100 text-burgundy text-3xl font-bold px-6 py-2 rounded-3xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally"
+            >
+              QUERO MEU INGRESSO
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINA DE DEPOIMENTOS -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24"
+      style="
+        background-image: url('imgs/pattern-flores.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[#f9dbbd]/30 via-[#f9dbbd]/60 to-[#f9dbbd]/100"
+      ></div>
+
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center h-full max-w-6xl mx-auto"
+      >
+        <!-- Título principal -->
+        <h1
+          class="text-burgundy text-3xl md:text-4xl font-bold text-center mb-16 leading-tight font-Morally max-w-4xl"
+        >
+          ELAS JÁ VIVERAM ESSA METODOLOGIA E<br />
+          ENCONTRARAM LEVEZA, CONSTÂNCIA E PRESENÇA:
+        </h1>
+
+        <!-- Grid de cards de depoimentos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
+          <!-- Card Depoimento 1 -->
+          <div
+            class="bg-[#E8A5B8] rounded-3xl p-8 shadow-lg h-96 flex flex-col justify-between"
+          >
+            <!-- Aspas de abertura -->
+            <div class="text-6xl text-burgundy font-serif leading-none mb-4">
+              "
+            </div>
+
+            <!-- Texto do depoimento -->
+            <div class="flex-1 flex flex-col justify-center">
+              <p class="text-burgundy text-lg leading-relaxed text-center">
+                <!-- Conteúdo do depoimento será adicionado aqui -->
+              </p>
+            </div>
+
+            <!-- Nome da pessoa -->
+            <div class="text-center mt-4">
+              <p class="text-burgundy font-semibold text-xl">
+                <!-- Nome será adicionado aqui -->
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Depoimento 2 -->
+          <div
+            class="bg-[#E8A5B8] rounded-3xl p-8 shadow-lg h-96 flex flex-col justify-between"
+          >
+            <!-- Aspas de abertura -->
+            <div class="text-6xl text-burgundy font-serif leading-none mb-4">
+              "
+            </div>
+
+            <!-- Texto do depoimento -->
+            <div class="flex-1 flex flex-col justify-center">
+              <p class="text-burgundy text-lg leading-relaxed text-center">
+                <!-- Conteúdo do depoimento será adicionado aqui -->
+              </p>
+            </div>
+
+            <!-- Nome da pessoa -->
+            <div class="text-center mt-4">
+              <p class="text-burgundy font-semibold text-xl">
+                <!-- Nome será adicionado aqui -->
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Depoimento 3 -->
+          <div
+            class="bg-[#E8A5B8] rounded-3xl p-8 shadow-lg h-96 flex flex-col justify-between"
+          >
+            <!-- Aspas de abertura -->
+            <div class="text-6xl text-burgundy font-serif leading-none mb-4">
+              "
+            </div>
+
+            <!-- Texto do depoimento -->
+            <div class="flex-1 flex flex-col justify-center">
+              <p class="text-burgundy text-lg leading-relaxed text-center">
+                <!-- Conteúdo do depoimento será adicionado aqui -->
+              </p>
+            </div>
+
+            <!-- Nome da pessoa -->
+            <div class="text-center mt-4">
+              <p class="text-burgundy font-semibold text-xl">
+                <!-- Nome será adicionado aqui -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINA DE GARANTIA -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24 bg-[#f9dbbd] flex flex-col items-center justify-center"
+    >
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center h-full max-w-5xl mx-auto"
+      >
+        <!-- Título principal -->
+        <h1
+          class="text-burgundy text-4xl md:text-5xl font-bold text-center mb-16 leading-tight font-Morally"
+        >
+          GARANTIA DE SATISFAÇÃO
+        </h1>
+
+        <!-- Container do conteúdo -->
+        <div class="flex flex-col lg:flex-row items-center gap-16 w-full">
+          <!-- Lado esquerdo - Selo de garantia -->
+          <div class="lg:w-1/2 flex justify-center">
+            <img
+              src="imgs/garantia.svg"
+              alt="Selo de Garantia 100% Satisfaction"
+              class="h-80 w-auto"
+            />
+          </div>
+
+          <!-- Lado direito - Texto da garantia -->
+          <div class="lg:w-1/2 space-y-6">
+            <!-- Texto principal -->
+            <div class="space-y-4">
+              <p class="text-xl leading-relaxed italic">
+                <span class="font-bold"
+                  >Se após a primeira aula você perceber que esse workshop não é
+                  pra você, fique tranquila: </span
+                ><br />
+                <span
+                  class="text-xl leading-relaxed font-bold underline uppercase"
+                >
+                  devolvemos 100% do valor pago.
+                </span>
+              </p>
+            </div>
+
+            <!-- Informações adicionais -->
+            <div class="space-y-2">
+              <p class="text-xl leading-relaxed">
+                Você pode solicitar o reembolso diretamente pelo gateway do
+                pagamento ou entrar em contato com a nossa equipe por e-mail ou
+                WhatsApp e fala sem complicações.
+              </p>
+              <p class="text-xl leading-relaxed">
+                Acreditamos na transformação — mas também respeitamos o seu
+                tempo e sua liberdade.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MIM PAGE ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="h-screen relative overflow-hidden px-24"
+      style="
+        background-image: url('imgs/pattern-home.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#ebd8dd] to-pink-200/80"
+      ></div>
+
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col lg:flex-row items-center justify-center h-full max-w-[70vw] mx-auto"
+      >
+        <!-- Lado esquerdo - Conteúdo -->
+        <div class="lg:w-1/2 lg:pr-0 space-y-10 order-2 lg:order-1">
+          <!-- Título -->
+          <h1
+            class="text-burgundy text-4xl lg:text-4xl font-bold leading-tight font-Morally"
+          >
+            QUEM CAMINHO COM VOCÊ<br />
+            <span class="text-4xl text-[#9c89b8]">Paola Muehlbauer</span>
+          </h1>
+
+          <!-- Texto principal -->
+          <div class="space-y-5 text-lg lg:text-xl leading-relaxed">
+            <p>
+              Oi! Eu sou a Paola Muehlbauer. Sou teóloga, escritora e
+              idealizadora do<span class="font-bold">
+                Ministério Papo de pijama.</span
+              >
+            </p>
+
+            <p>
+              Desde 2020, ajudo mulheres a recomeçarem sua
+              <span class="font-bold">caminhada com Deus</span>
+              com leveza, profundidade e constância — mesmo em meio à correria
+              da vida real.
+            </p>
+
+            <p>
+              Com formação em Teologia (FLT) e especialização em Espiritualidade
+              Cristã (PUC/PR), já acompanhei
+              <span class="font-bold">mais de 3.000 mulheres </span>por meio de
+              devocionais, mentorias e retiros espirituais.
+            </p>
+
+            <p>
+              Se você deseja retomar sua conexão com Deus e tornar sua rotina um
+              espaço de presença,
+              <span class="font-bold">esse workshop é pra você</span>.
+            </p>
+          </div>
+
+          <!-- Elemento decorativo/destaque -->
+          <!-- <div class="flex items-center mt-8">
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor decorativa"
+              class="h-8 w-auto mr-3"
+            />
+            <p class="text-burgundy font-semibold italic text-lg">
+              "Uma espiritualidade que cabe na sua rotina"
+            </p>
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor decorativa"
+              class="h-8 w-auto ml-3"
+            />
+          </div> -->
+        </div>
+
+        <!-- Lado direito - Imagem -->
+        <div
+          class="lg:w-1/2 flex justify-center lg:justify-end mb-8 lg:mb-0 order-1 lg:order-2"
+        >
+          <img
+            src="imgs/sobre-mim.png"
+            alt="Paola Milbauer"
+            class="h-96 lg:h-[80vh] w-auto object-contain"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINA DE GARANTIA -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section
+      class="relative overflow-hidden px-24 py-24 bg-[#eaa5ab] flex flex-col items-center justify-center"
+    >
+      <!-- Container principal -->
+      <div
+        class="relative z-10 flex flex-col justify-center h-full max-w-[70vw] mx-auto"
+      >
+        <!-- Título principal -->
+        <h1
+          class="text-burgundy text-4xl md:text-5xl font-bold mb-16 leading-tight font-Morally"
+        >
+          FAQ - TIRE SUAS DÚVIDAS AQUI
+        </h1>
+
+        <!-- Container das perguntas FAQ -->
+        <div class="space-y-6 w-full">
+          <!-- FAQ Item 1 -->
+          <div
+            class="faq-item bg-burgundy rounded-3xl overflow-hidden shadow-md hover:bg-opacity-90"
+          >
+            <button
+              class="faq-question w-full text-left px-8 py-3 text-[#eaa5ab] font-Morally text-xl md:text-3xl font-normal transition-all duration-300 flex justify-between items-center"
+              onclick="toggleFAQ(this)"
+            >
+              <span>VAI FICAR GRAVADO?</span>
+              <svg
+                class="faq-arrow w-6 h-6 transform transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <div
+                class="px-8 py-6 bg-white text-gray-800 text-lg leading-relaxed"
+              >
+                <p class="mb-4">
+                  O workshop será ao vivo e não inclui acesso automático à
+                  gravação.
+                </p>
+                <p class="mb-4">
+                  Mas, se quiser garantir, você pode
+                  <strong
+                    >adquirir o ingresso para ter acesso às gravações até 1 dia
+                    antes do evento começar</strong
+                  >. Após esse prazo, não será mais possível comprá-lo.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div
+            class="faq-item bg-burgundy rounded-3xl overflow-hidden shadow-md hover:bg-opacity-90"
+          >
+            <button
+              class="faq-question w-full text-left px-8 py-3 text-[#eaa5ab] font-Morally text-xl md:text-3xl font-normal hover:bg-opacity-90 transition-all duration-300 flex justify-between items-center"
+              onclick="toggleFAQ(this)"
+            >
+              <span>VAI TER MATERIAIS EXTRAS?</span>
+              <svg
+                class="faq-arrow w-6 h-6 transform transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <div
+                class="px-8 py-6 bg-white text-gray-800 text-lg leading-relaxed"
+              >
+                <p class="mb-4">
+                  Sim! <strong>Ao longo dos encontros</strong>, você vai receber
+                  um plano prático e materiais complementares para aplicar o que
+                  aprendeu.
+                </p>
+                <p>Tudo será enviado no grupo oficial do WhatsApp!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div
+            class="faq-item bg-burgundy rounded-3xl overflow-hidden shadow-md hover:bg-opacity-90"
+          >
+            <button
+              class="faq-question w-full text-left px-8 py-3 text-[#eaa5ab] font-Morally text-xl md:text-3xl font-normal hover:bg-opacity-90 transition-all duration-300 flex justify-between items-center"
+              onclick="toggleFAQ(this)"
+            >
+              <span>PRECISO PARTICIPAR AO VIVO?</span>
+              <svg
+                class="faq-arrow w-6 h-6 transform transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <div
+                class="px-8 py-6 bg-white text-gray-800 text-lg leading-relaxed"
+              >
+                <p>
+                  Sim, o ideal é que você participe ao vivo para aproveitar tudo
+                  da melhor forma.
+                  <strong
+                    >Se você adquiriu o acesso às gravações, poderá assistir
+                    depois</strong
+                  >
+                  — mas somente se a compra for feita antes do evento.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div
+            class="faq-item bg-burgundy rounded-3xl overflow-hidden shadow-md hover:bg-opacity-90"
+          >
+            <button
+              class="faq-question w-full text-left px-8 py-3 text-[#eaa5ab] font-Morally text-xl md:text-3xl font-normal hover:bg-opacity-90 transition-all duration-300 flex justify-between items-center"
+              onclick="toggleFAQ(this)"
+            >
+              <span>COMO FUNCIONA A GARANTIA?</span>
+              <svg
+                class="faq-arrow w-6 h-6 transform transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <div
+                class="px-8 py-6 bg-white text-gray-800 text-lg leading-relaxed"
+              >
+                <p class="mb-4">
+                  Se após a primeira aula você perceber que esse workshop não é
+                  pra você, <strong>devolvemos 100% do valor pago</strong>.
+                </p>
+                <p>
+                  Você pode solicitar o reembolso diretamente pelo gateway do
+                  pagamento ou entrar em contato conosco por e-mail ou WhatsApp.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div
+            class="faq-item bg-burgundy rounded-3xl overflow-hidden shadow-md hover:bg-opacity-90"
+          >
+            <button
+              class="faq-question w-full text-left px-8 py-3 text-[#eaa5ab] font-Morally text-xl md:text-3xl font-normal hover:bg-opacity-90 transition-all duration-300 flex justify-between items-center"
+              onclick="toggleFAQ(this)"
+            >
+              <span>PRECISO TER CONHECIMENTO PRÉVIO?</span>
+              <svg
+                class="faq-arrow w-6 h-6 transform transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <div
+                class="px-8 py-6 bg-white text-gray-800 text-lg leading-relaxed"
+              >
+                <p class="mb-4">
+                  Não! O workshop foi pensado para
+                  <strong>qualquer pessoa</strong> que deseja se aproximar de
+                  Deus, independente do seu nível de conhecimento bíblico ou
+                  experiência espiritual.
+                </p>
+                <p>
+                  Vamos partir do básico e construir juntas um caminho prático e
+                  acessível.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div
+            class="faq-item bg-burgundy rounded-3xl overflow-hidden shadow-md hover:bg-opacity-90"
+          >
+            <button
+              class="faq-question w-full text-left px-8 py-3 text-[#eaa5ab] font-Morally text-xl md:text-3xl font-normal hover:bg-opacity-90 transition-all duration-300 flex justify-between items-center"
+              onclick="toggleFAQ(this)"
+            >
+              <span>É SÓ PARA MULHERES?</span>
+              <svg
+                class="faq-arrow w-6 h-6 transform transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <div
+                class="px-8 py-6 bg-white text-gray-800 text-lg leading-relaxed"
+              >
+                <p class="mb-4">
+                  Sim! Este é um espaço pensado especialmente para mulheres que
+                  desejam se reconectar com Deus com leveza, profundidade e
+                  direção.
+                  <strong
+                    >A linguagem, os exemplos e os temas foram construídos com
+                    foco na realidade feminina</strong
+                  >.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script>
-      const swiper = new Swiper('.swiper', {
-        loop: true,
-        pagination: { el: '.swiper-pagination' },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+      // Função para verificar se elemento está visível no viewport
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect()
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        )
+      }
+
+      // Função para verificar se elemento está parcialmente visível
+      function isElementPartiallyInViewport(el) {
+        const rect = el.getBoundingClientRect()
+        const windowHeight =
+          window.innerHeight || document.documentElement.clientHeight
+        const windowWidth =
+          window.innerWidth || document.documentElement.clientWidth
+
+        return (
+          rect.bottom > 0 &&
+          rect.right > 0 &&
+          rect.top < windowHeight &&
+          rect.left < windowWidth
+        )
+      }
+
+      // Função para animar os elementos
+      function animateElements() {
+        const section = document.getElementById('workshop-section')
+        const title = document.getElementById('main-title')
+        const cards = document.querySelectorAll('.fade-in-card')
+
+        // Verifica se a seção está pelo menos 50% visível
+        if (isElementPartiallyInViewport(section)) {
+          // Anima o título primeiro
+          if (!title.classList.contains('visible')) {
+            setTimeout(() => {
+              title.classList.add('visible')
+            }, 200)
+          }
+
+          // Anima cada card com delay progressivo
+          cards.forEach((card, index) => {
+            if (!card.classList.contains('visible')) {
+              setTimeout(() => {
+                card.classList.add('visible')
+              }, 600 + index * 200) // 600ms base + 200ms para cada card
+            }
+          })
+        }
+      }
+
+      // Event listeners
+      window.addEventListener('scroll', animateElements)
+      window.addEventListener('resize', animateElements)
+
+      // Verifica na inicialização
+      document.addEventListener('DOMContentLoaded', animateElements)
+
+      // Intersection Observer para melhor performance (alternativa moderna)
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const title = document.getElementById('main-title')
+                const cards = document.querySelectorAll('.fade-in-card')
+
+                // Anima o título
+                if (!title.classList.contains('visible')) {
+                  setTimeout(() => {
+                    title.classList.add('visible')
+                  }, 200)
+                }
+
+                // Anima os cards
+                cards.forEach((card, index) => {
+                  if (!card.classList.contains('visible')) {
+                    setTimeout(() => {
+                      card.classList.add('visible')
+                    }, 600 + index * 200)
+                  }
+                })
+              }
+            })
+          },
+          {
+            threshold: 0.7, // Trigger quando 70% da seção estiver visível
+          },
+        )
+
+        observer.observe(document.getElementById('workshop-section'))
+      }
+
+      // Funcionalidade do Carrossel
+      document.addEventListener('DOMContentLoaded', function () {
+        const carouselWrapper = document.getElementById('carouselWrapper')
+        const prevBtn = document.getElementById('prevBtn')
+        const nextBtn = document.getElementById('nextBtn')
+        let currentSlide = 0
+
+        function updateCarousel() {
+          const translateX = currentSlide * -50 // -50% para cada slide
+          carouselWrapper.style.transform = `translateX(${translateX}%)`
+
+          // Atualiza visibilidade das setas
+          prevBtn.style.opacity = currentSlide === 0 ? 0 : 100
+          nextBtn.style.opacity = currentSlide === 1 ? 0 : 100
+        }
+
+        nextBtn.addEventListener('click', function () {
+          if (currentSlide < 1) {
+            currentSlide++
+            updateCarousel()
+          }
+        })
+
+        prevBtn.addEventListener('click', function () {
+          if (currentSlide > 0) {
+            currentSlide--
+            updateCarousel()
+          }
+        })
+
+        // Inicializa o carrossel
+        updateCarousel()
       })
+
+      function toggleFAQ(button) {
+        const faqItem = button.parentElement
+        const answer = faqItem.querySelector('.faq-answer')
+        const arrow = button.querySelector('.faq-arrow')
+
+        // Toggle da resposta
+        if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
+          // Fechar
+          answer.style.maxHeight = '0px'
+          arrow.style.transform = 'rotate(0deg)'
+          faqItem.classList.remove('active')
+        } else {
+          // Fechar todos os outros FAQs primeiro
+          document.querySelectorAll('.faq-item').forEach((item) => {
+            const otherAnswer = item.querySelector('.faq-answer')
+            const otherArrow = item.querySelector('.faq-arrow')
+            otherAnswer.style.maxHeight = '0px'
+            otherArrow.style.transform = 'rotate(0deg)'
+            item.classList.remove('active')
+          })
+
+          // Abrir o atual
+          answer.style.maxHeight = answer.scrollHeight + 'px'
+          arrow.style.transform = 'rotate(180deg)'
+          faqItem.classList.add('active')
+        }
+      }
     </script>
   </body>
 </html>
