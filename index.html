@@ -320,6 +320,15 @@
         opacity: 0.8;
         cursor: pointer;
       }
+
+      /* BOTÃO INICIAL - MUDANDO A CADA 5 SEGUNDOS */
+      .cta-button-fade {
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .cta-button-fade.fading {
+        opacity: 0.3;
+      }
     </style>
 
     <script>
@@ -424,8 +433,23 @@
 
             <!-- CTA Button -->
             <button
-              onclick="try{fbq('track', 'Lead');}catch(e){} document.getElementById('secao-precos').scrollIntoView({behavior: 'smooth'});"
-              class="bg-burgundy hover:bg-red-800 text-white text-xl lg:text-2xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally w-full sm:w-auto"
+              id="cta-button"
+              onclick="
+      try{
+        fbq('track', 'InitiateCheckout', {
+          value: 24.90, 
+          currency: 'BRL',
+          content_name: 'Workshop MVPD'
+        }); 
+        fbq('track', 'Lead');
+      }catch(e){}
+      
+      // Redirecionar após rastreamento
+      setTimeout(function(){
+        window.open('https://pay.zouti.com.br/checkout?product_offer_id=prod_offer_tvk6gu35bcy8w5zb4s67ab', '_blank');
+      }, 150);
+    "
+              class="cta-button-fade bg-burgundy hover:bg-red-800 text-white text-xl lg:text-2xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally w-full sm:w-auto"
             >
               QUERO MEU INGRESSO
             </button>
@@ -875,11 +899,11 @@
     </script>
 
     <!-- CAMINHO(como você vai...)--------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <section
+    <!-- <section
       class="lg:h-screen relative overflow-hidden px-10 md:px-24 bg-[#751133] flex flex-col items-center justify-around"
-    >
-      <!-- Overlay for better text readability -->
-      <div
+    > -->
+    <!-- Overlay for better text readability -->
+    <!-- <div
         class="absolute inset-0 bg-opacity-[0%]"
         style="
           background-image: url('imgs/pattern-xadrez.png');
@@ -888,25 +912,25 @@
           background-repeat: no-repeat;
           opacity: 5%;
         "
-      ></div>
+      ></div> -->
 
-      <!-- Container principal -->
-      <div
+    <!-- Container principal -->
+    <!-- <div
         id="workshop-section"
         class="relative z-10 flex flex-col items-center justify-around h-[80%] my-14"
-      >
-        <!-- Título principal -->
-        <h1
+      > -->
+    <!-- Título principal -->
+    <!-- <h1
           id="main-title"
           class="fade-in-title text-white text-2xl md:text-5xl font-bold text-center mb-10 md:mb-16 leading-tight font-Morally md:mt-0"
         >
           NESTE WORKSHOP, VOCÊ IRÁ SE APROXIMAR DE DEUS AO:
-        </h1>
+        </h1> -->
 
-        <!-- Grid de cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-          <!-- Card 1 -->
-          <div
+    <!-- Grid de cards -->
+    <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full"> -->
+    <!-- Card 1 -->
+    <!-- <div
             class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
@@ -916,10 +940,10 @@
               <span class="font-bold">Identificar</span> o que tem te afastado
               da presença de Deus
             </p>
-          </div>
+          </div> -->
 
-          <!-- Card 2 -->
-          <div
+    <!-- Card 2 -->
+    <!-- <div
             class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
@@ -929,10 +953,10 @@
               <span class="font-bold">Enxergar as distrações</span> que esvaziam
               sua fé e seu tempo
             </p>
-          </div>
+          </div> -->
 
-          <!-- Card 3 -->
-          <div
+    <!-- Card 3 -->
+    <!-- <div
             class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
@@ -942,10 +966,10 @@
               <span class="font-bold">Aprender ferramentas</span> simples para
               viver sua espiritualidade no dia a dia
             </p>
-          </div>
+          </div> -->
 
-          <!-- Card 4 -->
-          <div
+    <!-- Card 4 -->
+    <!-- <div
             class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
@@ -955,10 +979,10 @@
               Aprender como
               <span class="font-bold">aprofundar sua leitura bíblica</span>
             </p>
-          </div>
+          </div> -->
 
-          <!-- Card 5 -->
-          <div
+    <!-- Card 5 -->
+    <!-- <div
             class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
@@ -968,10 +992,10 @@
               <span class="font-bold">Organizar sua vida devocional</span> com
               leveza e direção
             </p>
-          </div>
+          </div> -->
 
-          <!-- Card 6 -->
-          <div
+    <!-- Card 6 -->
+    <!-- <div
             class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
@@ -985,7 +1009,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- CRONOGRAMA DO WORKSHOP ---------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -2086,6 +2110,28 @@
       </div>
     </footer>
     <script>
+      // Alternância do texto do botão CTA com efeito fade
+      const ctaButton = document.getElementById('cta-button')
+      const texts = ['QUERO MEU INGRESSO', 'LOTE 1 - APENAS R$24,90']
+      let currentTextIndex = 0
+
+      function switchButtonText() {
+        // Inicia o fade out
+        ctaButton.classList.add('fading')
+
+        // Após 150ms (metade da transição), troca o texto
+        setTimeout(() => {
+          currentTextIndex = (currentTextIndex + 1) % texts.length
+          ctaButton.textContent = texts[currentTextIndex]
+
+          // Remove o fade, fazendo o fade in
+          ctaButton.classList.remove('fading')
+        }, 150)
+      }
+
+      // Iniciar a alternância a cada 5 segundos
+      setInterval(switchButtonText, 4000)
+
       // Função para verificar se elemento está visível no viewport
       function isElementInViewport(el) {
         const rect = el.getBoundingClientRect()
