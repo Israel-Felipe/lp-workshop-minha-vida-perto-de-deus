@@ -457,114 +457,161 @@
       </div>
     </section>
 
-    <!-- CAMINHO(como você vai...)--------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- QUARTA PAGINA (O que você vai viver no workshop) -------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="lg:h-screen relative overflow-hidden px-10 md:px-24 bg-[#751133] flex flex-col items-center justify-around"
+      class="relative overflow-hidden px-6 md:px-24 md:py-20 flex flex-col bg-workshop-desktop md:bg-workshop-desktop bg-workshop-mobile"
     >
-      <!-- Overlay for better text readability -->
-      <div
-        class="absolute inset-0 bg-opacity-[0%]"
-        style="
-          background-image: url('imgs/pattern-xadrez.png');
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          opacity: 5%;
-        "
-      ></div>
-
       <!-- Container principal -->
       <div
-        id="workshop-section"
-        class="relative z-10 flex flex-col items-center justify-around h-[80%] my-14"
+        class="content-overlay flex flex-col items-center justify-center h-full max-w-6xl md:mx-auto md:pt-[20vh] pt-[10vh]"
       >
         <!-- Título principal -->
         <h1
-          id="main-title"
-          class="fade-in-title text-white text-2xl md:text-5xl font-bold text-center mb-10 md:mb-16 leading-tight font-Morally md:mt-0"
+          class="text-white text-2xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-16 leading-tight"
         >
-          NESTE WORKSHOP, VOCÊ IRÁ SE APROXIMAR DE DEUS AO:
+          O QUE VOCÊ VAI VIVER NO<br />
+          <span
+            class="inline-flex items-center gap-2 md:gap-4 text-[#F9DBBD] font-Morally text-4xl lg:text-7xl flex-wrap justify-center"
+          >
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor"
+              class="h-6 md:h-12 w-auto"
+            />
+            WORKSHOP
+            <img
+              src="imgs/icons/florzinha.svg"
+              alt="flor"
+              class="h-6 md:h-12 w-auto"
+            />
+          </span>
         </h1>
 
-        <!-- Grid de cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-          <!-- Card 1 -->
+        <!-- Subtítulo -->
+        <p
+          class="text-white text-xl md:text-3xl text-center md:mb-12 max-w-4xl !leading-normal"
+        >
+          Durante três aulas ao vivo, você vai
+          <strong
+            >despertar sua alma, organizar sua vida espiritual e aprender a
+            caminhar com Deus na rotina comum</strong
+          >.
+        </p>
+
+        <!-- Cards com imagens e conteúdo -->
+        <div class="space-y-10 md:space-y-16 w-full max-w-4xl py-10">
+          <!-- Card 1 - IDENTIFICAR -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
           >
-            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
-              1
+            <!-- Container da imagem - sobrepondo -->
+            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
+              <img
+                src="imgs/identificar.png"
+                alt="Identificar"
+                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
+              />
             </div>
-            <p class="text-[#751133] text-lg leading-relaxed">
-              <span class="font-bold">Identificar</span> o que tem te afastado
-              da presença de Deus
-            </p>
+
+            <!-- Card de conteúdo -->
+            <div
+              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
+            >
+              <div class="z-20">
+                <div
+                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
+                >
+                  <span
+                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
+                    >IDENTIFICAR</span
+                  >
+                </div>
+                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
+                  Você vai
+                  <strong
+                    >identificar o que tem roubado sua consistência</strong
+                  >
+                  e presença diante de Deus e o que faz você "dormir" na fé.
+                  <span class="hidden md:block"
+                    >Você terá um
+                    <strong>diagnóstico claro do seu momento espiritual</strong
+                    >.</span
+                  >
+                </p>
+              </div>
+            </div>
           </div>
 
-          <!-- Card 2 -->
+          <!-- Card 2 - TRANSFORMAR -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
           >
-            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
-              2
+            <!-- Container da imagem - sobrepondo -->
+            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
+              <img
+                src="imgs/transformar.png"
+                alt="Transformar"
+                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
+              />
             </div>
-            <p class="text-[#751133] text-lg leading-relaxed">
-              <span class="font-bold">Enxergar as distrações</span> que esvaziam
-              sua fé e seu tempo
-            </p>
+
+            <!-- Card de conteúdo -->
+            <div
+              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
+            >
+              <div class="z-20">
+                <div
+                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
+                >
+                  <span
+                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
+                    >TRANSFORMAR</span
+                  >
+                </div>
+                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
+                  Você vai aprender a
+                  <strong
+                    >transformar a leitura da Bíblia e a oração em encontros
+                    reais com Deus</strong
+                  >, e não em tarefas religiosas.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <!-- Card 3 -->
+          <!-- Card 3 - APLICAR -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
           >
-            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
-              3
+            <!-- Container da imagem - sobrepondo -->
+            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
+              <img
+                src="imgs/aplicar.png"
+                alt="Aplicar"
+                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
+              />
             </div>
-            <p class="text-[#751133] text-lg leading-relaxed">
-              <span class="font-bold">Aprender ferramentas</span> simples para
-              viver sua espiritualidade no dia a dia
-            </p>
-          </div>
 
-          <!-- Card 4 -->
-          <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
-          >
-            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
-              4
+            <!-- Card de conteúdo -->
+            <div
+              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
+            >
+              <div class="z-20">
+                <div
+                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
+                >
+                  <span
+                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
+                    >APLICAR</span
+                  >
+                </div>
+                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
+                  Você vai sair dessa aula com uma
+                  <strong>metodologia prática para seguir</strong>, mesmo nos
+                  dias corridos.
+                </p>
+              </div>
             </div>
-            <p class="text-[#751133] text-lg leading-relaxed">
-              Aprender como
-              <span class="font-bold">aprofundar sua leitura bíblica</span>
-            </p>
-          </div>
-
-          <!-- Card 5 -->
-          <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
-          >
-            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
-              5
-            </div>
-            <p class="text-[#751133] text-lg leading-relaxed">
-              <span class="font-bold">Organizar sua vida devocional</span> com
-              leveza e direção
-            </p>
-          </div>
-
-          <!-- Card 6 -->
-          <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
-          >
-            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
-              6
-            </div>
-            <p class="text-[#751133] text-lg leading-relaxed">
-              Dar
-              <span class="font-bold">passos reais p/ manter constância</span>
-              na sua caminhada com Deus
-            </p>
           </div>
         </div>
       </div>
@@ -827,161 +874,114 @@
       }
     </script>
 
-    <!-- QUARTA PAGINA (O que você vai viver no workshop) -------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- CAMINHO(como você vai...)--------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="relative overflow-hidden px-6 md:px-24 md:py-20 flex flex-col bg-workshop-desktop md:bg-workshop-desktop bg-workshop-mobile"
+      class="lg:h-screen relative overflow-hidden px-10 md:px-24 bg-[#751133] flex flex-col items-center justify-around"
     >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-opacity-[0%]"
+        style="
+          background-image: url('imgs/pattern-xadrez.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          opacity: 5%;
+        "
+      ></div>
+
       <!-- Container principal -->
       <div
-        class="content-overlay flex flex-col items-center justify-center h-full max-w-6xl md:mx-auto md:pt-[20vh] pt-[10vh]"
+        id="workshop-section"
+        class="relative z-10 flex flex-col items-center justify-around h-[80%] my-14"
       >
         <!-- Título principal -->
         <h1
-          class="text-white text-2xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-16 leading-tight"
+          id="main-title"
+          class="fade-in-title text-white text-2xl md:text-5xl font-bold text-center mb-10 md:mb-16 leading-tight font-Morally md:mt-0"
         >
-          O QUE VOCÊ VAI VIVER NO<br />
-          <span
-            class="inline-flex items-center gap-2 md:gap-4 text-[#F9DBBD] font-Morally text-4xl lg:text-7xl flex-wrap justify-center"
-          >
-            <img
-              src="imgs/icons/florzinha.svg"
-              alt="flor"
-              class="h-6 md:h-12 w-auto"
-            />
-            WORKSHOP
-            <img
-              src="imgs/icons/florzinha.svg"
-              alt="flor"
-              class="h-6 md:h-12 w-auto"
-            />
-          </span>
+          NESTE WORKSHOP, VOCÊ IRÁ SE APROXIMAR DE DEUS AO:
         </h1>
 
-        <!-- Subtítulo -->
-        <p
-          class="text-white text-xl md:text-3xl text-center md:mb-12 max-w-4xl !leading-normal"
-        >
-          Durante três aulas ao vivo, você vai
-          <strong
-            >despertar sua alma, organizar sua vida espiritual e aprender a
-            caminhar com Deus na rotina comum</strong
-          >.
-        </p>
-
-        <!-- Cards com imagens e conteúdo -->
-        <div class="space-y-10 md:space-y-16 w-full max-w-4xl py-10">
-          <!-- Card 1 - IDENTIFICAR -->
+        <!-- Grid de cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          <!-- Card 1 -->
           <div
-            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
-            <!-- Container da imagem - sobrepondo -->
-            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
-              <img
-                src="imgs/identificar.png"
-                alt="Identificar"
-                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
-              />
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              1
             </div>
-
-            <!-- Card de conteúdo -->
-            <div
-              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
-            >
-              <div class="z-20">
-                <div
-                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
-                >
-                  <span
-                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
-                    >IDENTIFICAR</span
-                  >
-                </div>
-                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
-                  Você vai
-                  <strong
-                    >identificar o que tem roubado sua consistência</strong
-                  >
-                  e presença diante de Deus e o que faz você "dormir" na fé.
-                  <span class="hidden md:block"
-                    >Você terá um
-                    <strong>diagnóstico claro do seu momento espiritual</strong
-                    >.</span
-                  >
-                </p>
-              </div>
-            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Identificar</span> o que tem te afastado
+              da presença de Deus
+            </p>
           </div>
 
-          <!-- Card 2 - TRANSFORMAR -->
+          <!-- Card 2 -->
           <div
-            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
-            <!-- Container da imagem - sobrepondo -->
-            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
-              <img
-                src="imgs/transformar.png"
-                alt="Transformar"
-                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
-              />
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              2
             </div>
-
-            <!-- Card de conteúdo -->
-            <div
-              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
-            >
-              <div class="z-20">
-                <div
-                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
-                >
-                  <span
-                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
-                    >TRANSFORMAR</span
-                  >
-                </div>
-                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
-                  Você vai aprender a
-                  <strong
-                    >transformar a leitura da Bíblia e a oração em encontros
-                    reais com Deus</strong
-                  >, e não em tarefas religiosas.
-                </p>
-              </div>
-            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Enxergar as distrações</span> que esvaziam
+              sua fé e seu tempo
+            </p>
           </div>
 
-          <!-- Card 3 - APLICAR -->
+          <!-- Card 3 -->
           <div
-            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
-            <!-- Container da imagem - sobrepondo -->
-            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
-              <img
-                src="imgs/aplicar.png"
-                alt="Aplicar"
-                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
-              />
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              3
             </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Aprender ferramentas</span> simples para
+              viver sua espiritualidade no dia a dia
+            </p>
+          </div>
 
-            <!-- Card de conteúdo -->
-            <div
-              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
-            >
-              <div class="z-20">
-                <div
-                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
-                >
-                  <span
-                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
-                    >APLICAR</span
-                  >
-                </div>
-                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
-                  Você vai sair dessa aula com uma
-                  <strong>metodologia prática para seguir</strong>, mesmo nos
-                  dias corridos.
-                </p>
-              </div>
+          <!-- Card 4 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              4
             </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              Aprender como
+              <span class="font-bold">aprofundar sua leitura bíblica</span>
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              5
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              <span class="font-bold">Organizar sua vida devocional</span> com
+              leveza e direção
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+          >
+            <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
+              6
+            </div>
+            <p class="text-[#751133] text-lg leading-relaxed">
+              Dar
+              <span class="font-bold">passos reais p/ manter constância</span>
+              na sua caminhada com Deus
+            </p>
           </div>
         </div>
       </div>
