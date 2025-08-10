@@ -3,8 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minha Vida + Perto de Deus</title>
+    <title>Workshop MVPD</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="imgs/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="imgs/favicon.png" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments)
+        }
+        if (!f._fbq) f._fbq = n
+        n.push = n
+        n.loaded = !0
+        n.version = '2.0'
+        n.queue = []
+        t = b.createElement(e)
+        t.async = !0
+        t.src = v
+        s = b.getElementsByTagName(e)[0]
+        s.parentNode.insertBefore(t, s)
+      })(
+        window,
+        document,
+        'script',
+        'https://connect.facebook.net/en_US/fbevents.js',
+      )
+      fbq('init', '785607259813837')
+      fbq('track', 'PageView')
+    </script>
+
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=785607259813837&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
       @font-face {
@@ -51,51 +94,77 @@
         position: relative;
       }
 
-      .carousel-wrapper {
-        display: flex;
+      /* Desktop - Grid normal */
+      .carousel-desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3.5rem;
         transition: transform 0.5s ease-in-out;
-        width: 200%;
       }
 
-      .carousel-slide {
-        width: 50%;
-        flex-shrink: 0;
+      /* Mobile - Layout especial */
+      .carousel-mobile {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
       }
 
-      .nav-arrow {
-        background: rgba(139, 21, 56, 0.9);
-        border: none;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
+      .main-card {
+        width: 90%;
+        max-width: 280px;
+        z-index: 10;
+        position: relative;
+      }
+
+      .preview-cards {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        opacity: 0.7;
+      }
+
+      .preview-card {
+        flex: 0 0 35%;
+        height: 140px;
+        border-radius: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
+        position: relative;
+        overflow: hidden;
       }
 
-      .nav-arrow:hover {
-        background: rgba(139, 21, 56, 1);
-        transform: translateY(-50%) scale(1.1);
+      .preview-card:hover {
+        opacity: 1;
+        transform: scale(1.05);
       }
 
-      .nav-arrow svg {
-        width: 24px;
-        height: 24px;
-        fill: white;
+      .card-content {
+        background: #9c89b8;
+        border-radius: 1.5rem;
+        padding: 2rem;
+        text-align: center;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
-      .nav-arrow.prev {
-        left: -30px;
-      }
-
-      .nav-arrow.next {
-        right: -30px;
+      .card-content-depos {
+        background: #fff3e3;
+        height: 300px;
+        border-radius: 1.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
       }
 
       .card-icon {
@@ -105,6 +174,151 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      /* Responsivo */
+      @media (max-width: 768px) {
+        .carousel-desktop {
+          display: none;
+        }
+        .carousel-mobile {
+          display: flex;
+        }
+      }
+
+      /* Desktop - imagem de fundo normal */
+      @media (min-width: 768px) {
+        .bg-workshop-desktop {
+          background-image: url('imgs/fundo-paola-degrade.jpg');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+        }
+      }
+
+      /* Mobile - cor de fundo sólida com pseudo-elemento para a imagem */
+      @media (max-width: 768px) {
+        .bg-workshop-mobile {
+          background-color: #751133;
+          position: relative;
+        }
+
+        .bg-workshop-mobile::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 40vh; /* Ajuste esta altura conforme necessário */
+          background-image: url('imgs/fundo-paola-degrade.jpg');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+          z-index: 1;
+        }
+      }
+
+      /* Garantir que o conteúdo fique acima da imagem */
+      .content-overlay {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .modal-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        height: 90vh;
+        animation: scaleIn 0.3s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .modal-image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        object-fit: contain;
+        display: block;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s;
+        z-index: 1001;
+      }
+
+      .close-modal:hover {
+        color: #f9dbbd;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: translate(-50%, -50%) scale(0.7);
+        }
+        to {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      @media (min-width: 768px) {
+        .carousel-desktop {
+          display: grid;
+        }
+
+        .carousel-mobile {
+          display: none;
+        }
+      }
+
+      /* Indicador de clique */
+      .clickable-indicator {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: #8b1538;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        opacity: 0.8;
+        cursor: pointer;
       }
     </style>
 
@@ -128,9 +342,9 @@
   </head>
 
   <body class="bg-white text-gray-900">
-    <!-- PROMESSA (HOME PAGE)--------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- PROMESSA (HOME PAGE) - Ajustada para Mobile -->
     <section
-      class="h-screen relative overflow-hidden px-24"
+      class="md:min-h-screen relative overflow-hidden md:px-24"
       style="
         background-image: url('imgs/pattern-home.png');
         background-size: cover;
@@ -143,66 +357,84 @@
         class="absolute inset-0 bg-gradient-to-br from-[#ebd8dd] to-pink-200/80"
       ></div>
 
-      <!-- Container principal sem padding-top -->
+      <!-- Container principal -->
       <div
-        class="container mx-auto px-6 pt-6 relative z-10 h-full flex flex-col"
+        class="container mx-auto px-4 md:px-6 pt-6 relative z-10 min-h-screen flex flex-col"
       >
-        <!-- Header com padding-top apenas aqui -->
-        <header class="flex justify-between items-start mb-0 pt-10">
+        <!-- Header -->
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-start mb-8 md:mb-0 pt-6 md:pt-10"
+        >
           <!-- Logo -->
-          <div class="flex items-center">
+          <div
+            class="flex items-center mb-6 md:mb-0 w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0"
+          >
             <img
               src="imgs/logomarca.png"
               alt="Minha Vida + Perto de Deus"
-              class="h-16 w-auto"
+              class="h-12 md:h-16 w-auto"
             />
           </div>
 
           <!-- Data do Evento -->
-          <div class="text-right flex items-center">
-            <div class="items-center text-burgundy mb-1">
-              <span class="font-semibold">01, 03 e 04 de Setembro</span>
-              <p class="text-burgundy italic">100% ao vivo pelo meeting</p>
+          <div
+            class="text-center md:text-right flex items-center w-full md:w-auto justify-center md:justify-end"
+          >
+            <div
+              class="flex items-center text-burgundy mb-1 order-2 md:order-1"
+            >
+              <div class="text-center md:text-right">
+                <span class="font-semibold text-lg md:text-base block"
+                  >01, 03 e 04 de Setembro</span
+                >
+                <p class="text-burgundy italic text-base md:text-sm">
+                  100% ao vivo pelo meeting
+                </p>
+              </div>
             </div>
             <img
               src="imgs/calendar.svg"
-              alt="calerdar"
-              class="h-11 w-auto ml-5"
+              alt="calendar"
+              class="h-8 md:h-11 w-auto mb-3 md:mb-0 md:ml-5 order-1 md:order-2 hidden md:flex"
             />
           </div>
         </header>
 
         <!-- Main Content -->
-        <div class="grid lg:grid-cols-2 gap-8 items-center flex-1 relative">
+        <div
+          class="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center flex-1 relative px-5 md:px-0"
+        >
           <!-- Left Content -->
-          <div class="z-20">
+          <div class="z-20 text-center lg:text-left lg:order-1">
             <!-- Main Headline -->
             <h1
-              class="text-4xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-8 font-Morally"
+              class="text-2xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-6 lg:mb-8 font-Morally leading-tight"
             >
-              3 DIAS PARA SE APROXIMAR DE DEUS COM LEVEZA E CONSTÂNCIA E CRIAR
+              3 AULAS PARA SE APROXIMAR DE DEUS COM LEVEZA E CONSTÂNCIA, CRIANDO
               UM PLANO QUE CABE NA SUA ROTINA
             </h1>
 
             <!-- Subtitle -->
-            <p class="text-xl lg:text-2xl text-gray-700 mb-14">
+            <p
+              class="text-md lg:text-2xl text-gray-700 mb-8 lg:mb-14 leading-relaxed"
+            >
               Uma metodologia prática e validada para te aproximar de Deus e
               viver uma espiritualidade que faz sentido na vida real.
             </p>
 
             <!-- CTA Button -->
             <button
-              onclick="fbq('track', 'Lead');"
-              class="bg-burgundy hover:bg-red-800 text-white text-2xl px-6 py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally"
+              onclick="try{fbq('track', 'Lead');}catch(e){} document.getElementById('secao-precos').scrollIntoView({behavior: 'smooth'});"
+              class="bg-burgundy hover:bg-red-800 text-white text-xl lg:text-2xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally w-full sm:w-auto"
             >
-              COMPRAR INGRESSO | LOTE 1
+              QUERO MEU INGRESSO
             </button>
           </div>
 
-          <!-- Right Content - Image Container -->
-          <div class="relative h-full">
+          <!-- Right Content - Image Container (Desktop) -->
+          <div class="relative h-full w-full order-2 hidden md:block">
             <!-- Container absoluto que vai até o final da seção -->
-            <div class="absolute bottom-0 left-[20%] h-full w-full">
+            <div class="absolute bottom-0 left-[10%] h-full w-full">
               <img
                 src="imgs/paola-home.png"
                 alt="@paolamilbauer"
@@ -212,12 +444,22 @@
             </div>
           </div>
         </div>
+        <!-- Mobile Image - Positioned at bottom -->
+        <div class="relative md:hidden h-full w-full mt-auto">
+          <div class="flex">
+            <img
+              src="imgs/paola-home.png"
+              alt="@paolamilbauer"
+              class="h-full object-contain object-bottom"
+            />
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- CAMINHO(como você vai...)--------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="h-screen relative overflow-hidden px-24 bg-[#751133] flex flex-col items-center justify-around"
+      class="lg:h-screen relative overflow-hidden px-10 md:px-24 bg-[#751133] flex flex-col items-center justify-around"
     >
       <!-- Overlay for better text readability -->
       <div
@@ -234,12 +476,12 @@
       <!-- Container principal -->
       <div
         id="workshop-section"
-        class="relative z-10 flex flex-col items-center justify-around h-[80%]"
+        class="relative z-10 flex flex-col items-center justify-around h-[80%] my-14"
       >
         <!-- Título principal -->
         <h1
           id="main-title"
-          class="fade-in-title text-white text-4xl md:text-5xl font-bold text-center mb-16 leading-tight font-Morally"
+          class="fade-in-title text-white text-2xl md:text-5xl font-bold text-center mb-10 md:mb-16 leading-tight font-Morally md:mt-0"
         >
           NESTE WORKSHOP, VOCÊ IRÁ <br />
           SE APROXIMAR DE DEUS AO:
@@ -249,7 +491,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
           <!-- Card 1 -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
               1
@@ -262,7 +504,7 @@
 
           <!-- Card 2 -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
               2
@@ -275,7 +517,7 @@
 
           <!-- Card 3 -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
               3
@@ -288,7 +530,7 @@
 
           <!-- Card 4 -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
               4
@@ -301,7 +543,7 @@
 
           <!-- Card 5 -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
               5
@@ -314,7 +556,7 @@
 
           <!-- Card 6 -->
           <div
-            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-8 text-center shadow-lg"
+            class="fade-in-card bg-pink-200 bg-opacity-90 rounded-3xl p-6 md:p-8 text-center shadow-lg"
           >
             <div class="text-[#751133] text-3xl font-bold mb-4 font-Morally">
               6
@@ -331,7 +573,7 @@
 
     <!-- TERCEIRA PAGINA(essa jornada é para você que:)-------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="h-screen relative overflow-hidden px-24"
+      class="md:min-h-screen relative overflow-hidden px-6 md:px-24"
       style="
         background-image: url('imgs/pattern-home.png');
         background-size: cover;
@@ -346,272 +588,483 @@
 
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col items-center justify-center h-full"
+        class="relative z-10 flex flex-col items-center justify-center md:min-h-screen py-16"
       >
         <!-- Título principal -->
         <h1
-          class="text-burgundy text-4xl md:text-5xl font-bold text-center mb-16 leading-tight font-Morally"
+          class="text-[#8B1538] text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 leading-tight font-Morally"
         >
           ESSA JORNADA É PARA VOCÊ QUE:
         </h1>
-        <div class="w-full flex justify-center items-center">
-          <button id="prevBtn" class="prev" style="opacity: 0">
+
+        <div class="w-full flex justify-center items-center max-w-6xl">
+          <!-- Setas de navegação -->
+          <button id="prevBtn" class="prev" style="opacity: 0.5">
             <img
               src="imgs/icons/seta.svg"
               alt="seta"
-              class="h-11 w-auto mr-5 rotate-180"
+              class="h-11 w-auto md:mr-5 rotate-180 -mt-28 md:-mt-0"
             />
           </button>
+
           <!-- Carrossel Container -->
-          <div class="carousel-container relative max-w-6xl w-full">
-            <!-- Seta Anterior (inicialmente oculta) -->
+          <div class="carousel-container relative w-full max-w-5xl">
+            <!-- Layout Desktop -->
+            <div id="carouselDesktop" class="carousel-desktop">
+              <!-- Cards serão inseridos aqui pelo JavaScript -->
+            </div>
 
-            <!-- Wrapper do carrossel -->
-            <div id="carouselWrapper" class="carousel-wrapper">
-              <!-- Slide 1 - Primeiros 3 cards -->
-              <div class="carousel-slide">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-14">
-                  <!-- Card 1 -->
-                  <div
-                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
-                  >
-                    <!-- Ícone de floco de neve -->
-                    <div class="card-icon">
-                      <img
-                        src="imgs/icons/gelo.svg"
-                        alt="gelo"
-                        class="h-20 w-auto"
-                      />
-                    </div>
-                    <p class="text-white text-2xl leading-relaxed text-center">
-                      Sente que sua fé esfriou, mas não quer mais viver distante
-                      de Deus
-                    </p>
-                  </div>
-
-                  <!-- Card 2 -->
-                  <div
-                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
-                  >
-                    <div class="card-icon">
-                      <!-- Ícone de rosto preocupado -->
-                      <img
-                        src="imgs/icons/culpada.svg"
-                        alt="gelo"
-                        class="h-20 w-auto"
-                      />
-                    </div>
-                    <p class="text-white text-2xl leading-relaxed text-center">
-                      Você começa, mas não consegue continuar... e isso só te
-                      deixa mais culpada
-                    </p>
-                  </div>
-
-                  <!-- Card 3 -->
-                  <div
-                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
-                  >
-                    <div class="card-icon">
-                      <!-- Ícone de coração -->
-                      <img
-                        src="imgs/icons/coracao.svg"
-                        alt="gelo"
-                        class="h-20 w-auto"
-                      />
-                    </div>
-                    <p class="text-white text-2xl leading-relaxed text-center">
-                      A rotina, o cansaço ou a ansiedade têm roubado seu tempo e
-                      seu coração
-                    </p>
-                  </div>
-                </div>
+            <!-- Layout Mobile -->
+            <div id="carouselMobile" class="carousel-mobile">
+              <!-- Card principal -->
+              <div id="mainCard" class="main-card">
+                <!-- Card content será inserido aqui -->
               </div>
 
-              <!-- Slide 2 - Últimos 3 cards -->
-              <div class="carousel-slide">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-14">
-                  <!-- Card 4 -->
-                  <div
-                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
-                  >
-                    <div class="card-icon">
-                      <!-- Ícone de livro -->
-                      <img
-                        src="imgs/icons/interrogacoes.svg"
-                        alt="gelo"
-                        class="h-20 w-auto"
-                      />
-                    </div>
-                    <p class="text-white text-2xl leading-relaxed text-center">
-                      Quer aprender a ler a Bíblia de forma mais profunda e
-                      significativa
-                    </p>
-                  </div>
-
-                  <!-- Card 5 -->
-                  <div
-                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
-                  >
-                    <div class="card-icon">
-                      <!-- Ícone de calendário -->
-                      <img
-                        src="imgs/icons/setas.svg"
-                        alt="gelo"
-                        class="h-20 w-auto"
-                      />
-                    </div>
-                    <p class="text-white text-2xl leading-relaxed text-center">
-                      Deseja organizar sua vida devocional de forma prática e
-                      sustentável
-                    </p>
-                  </div>
-
-                  <!-- Card 6 -->
-                  <div
-                    class="bg-[#9C89B8] backdrop-blur-sm rounded-3xl p-12 text-center h-[50vh]"
-                  >
-                    <div class="card-icon">
-                      <!-- Ícone de estrela -->
-                      <img
-                        src="imgs/icons/olhos.svg"
-                        alt="gelo"
-                        class="h-20 w-auto"
-                      />
-                    </div>
-                    <p class="text-white text-2xl leading-relaxed text-center">
-                      Quer uma espiritualidade que faça sentido na sua vida
-                      real, sem pressão ou culpa
-                    </p>
-                  </div>
-                </div>
+              <!-- Cards de preview -->
+              <div class="preview-cards mt-3 gap-[8%]">
+                <div
+                  id="previewCard1"
+                  class="preview-card bg-[#9C89B8]"
+                  onclick="goToCard(1)"
+                ></div>
+                <div
+                  id="previewCard2"
+                  class="preview-card bg-[#9C89B8]"
+                  onclick="goToCard(2)"
+                ></div>
               </div>
             </div>
           </div>
-          <!-- Seta Próximo (inicialmente visível) -->
+
+          <!-- Seta Próximo -->
           <button id="nextBtn" class="next">
             <img
               src="imgs/icons/seta.svg"
-              alt="calerdar"
-              class="h-11 w-auto ml-5"
+              alt="seta"
+              class="h-11 w-auto md:ml-5 -mt-28 md:-mt-0"
             />
           </button>
         </div>
       </div>
     </section>
 
+    <script>
+      // Dados dos cards
+      const cardData = [
+        {
+          icon: 'gelo',
+          text: 'Sente que sua fé esfriou, mas não quer mais viver distante de Deus',
+          number: 1,
+        },
+        {
+          icon: 'culpada',
+          text: 'Você começa, mas não consegue continuar... e isso só te deixa mais culpada',
+          number: 2,
+        },
+        {
+          icon: 'coracao',
+          text: 'A rotina, o cansaço ou a ansiedade têm roubado seu tempo e seu coração',
+          number: 3,
+        },
+        {
+          icon: 'interrogacoes',
+          text: 'Você sente saudade da presença dEle, mas não sabe como (re)começar',
+          number: 4,
+        },
+        {
+          icon: 'setas',
+          text: 'Você está despertando para a fé e precisa de direção',
+          number: 5,
+        },
+        {
+          icon: 'olhos',
+          text: 'Você deseja enxergar a presença de Deus  na sua rotina',
+          number: 6,
+        },
+      ]
+
+      let currentIndex = 0
+      const totalCards = cardData.length
+
+      // Função para criar um card
+      function createCard(data, isMain = false) {
+        const cardClass = isMain ? 'card-content' : 'card-content h-full'
+        return `
+          <div class="${cardClass}">
+              <div class="card-icon">
+                  <img
+                          src="imgs/icons/${data.icon}.svg"
+                          alt="gelo"
+                          class="h-20 w-auto"
+                        />
+          </span>
+              </div>
+              <p class="text-white ${
+                isMain ? 'text-xl md:text-2xl' : 'text-sm'
+              } leading-relaxed text-center">
+                  ${data.text}
+              </p>
+          </div>
+      `
+      }
+
+      // Função para atualizar o carrossel mobile
+      function updateMobileCarousel() {
+        const mainCard = document.getElementById('mainCard')
+        const previewCard1 = document.getElementById('previewCard1')
+        const previewCard2 = document.getElementById('previewCard2')
+
+        // Card principal (atual)
+        mainCard.innerHTML = createCard(cardData[currentIndex], true)
+
+        // Cards de preview
+        const nextIndex1 = (currentIndex + 1) % totalCards
+        const nextIndex2 = (currentIndex + 2) % totalCards
+
+        previewCard1.innerHTML = `<div class="flex flex-col p-2"><img
+                          src="imgs/icons/${cardData[nextIndex1].icon}.svg"
+                          alt="gelo"
+                          class="h-10 w-auto"
+                        />
+                        <span class="text-white text-[6px] text-center pt-2">${cardData[nextIndex1].text}</span></div>`
+
+        previewCard2.innerHTML = `<div class="flex flex-col p-2"><img
+                          src="imgs/icons/${cardData[nextIndex2].icon}.svg"
+                          alt="gelo"
+                          class="h-10 w-auto"
+                        />
+                        <span class="text-white text-[6px] text-center  pt-2">${cardData[nextIndex2].text}</span></div>`
+
+        // Atualizar títulos dos previews
+        previewCard1.title = cardData[nextIndex1].text
+        previewCard2.title = cardData[nextIndex2].text
+      }
+
+      // Função para atualizar o carrossel desktop
+      function updateDesktopCarousel() {
+        const carouselDesktop = document.getElementById('carouselDesktop')
+        carouselDesktop.innerHTML = ''
+
+        // Mostrar 3 cards por vez no desktop
+        for (let i = 0; i < 3; i++) {
+          const cardIndex = (currentIndex + i) % totalCards
+          const cardDiv = document.createElement('div')
+          cardDiv.innerHTML = createCard(cardData[cardIndex], true)
+          carouselDesktop.appendChild(cardDiv)
+        }
+      }
+
+      // Função para ir para um card específico
+      function goToCard(offset) {
+        currentIndex = (currentIndex + offset) % totalCards
+        updateCarousels()
+      }
+
+      // Função para atualizar ambos os carrosséis
+      function updateCarousels() {
+        updateMobileCarousel()
+        updateDesktopCarousel()
+        updateArrows()
+      }
+
+      // Função para atualizar as setas
+      function updateArrows() {
+        const prevBtn = document.getElementById('prevBtn')
+        const nextBtn = document.getElementById('nextBtn')
+
+        // No mobile, sempre permitir navegação circular
+        prevBtn.style.opacity = '1'
+        nextBtn.style.opacity = '1'
+      }
+
+      // Event listeners para as setas
+      document.getElementById('nextBtn').addEventListener('click', function () {
+        currentIndex = (currentIndex + 1) % totalCards
+        updateCarousels()
+      })
+
+      document.getElementById('prevBtn').addEventListener('click', function () {
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards
+        updateCarousels()
+      })
+
+      // Inicializar o carrossel
+      document.addEventListener('DOMContentLoaded', function () {
+        updateCarousels()
+      })
+
+      // Suporte a gestos touch para mobile
+      let startX = 0
+      let endX = 0
+
+      document
+        .getElementById('carouselMobile')
+        .addEventListener('touchstart', function (e) {
+          startX = e.touches[0].clientX
+        })
+
+      document
+        .getElementById('carouselMobile')
+        .addEventListener('touchend', function (e) {
+          endX = e.changedTouches[0].clientX
+          handleSwipe()
+        })
+
+      function handleSwipe() {
+        const threshold = 50
+        const diff = startX - endX
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0) {
+            // Swipe left - próximo card
+            currentIndex = (currentIndex + 1) % totalCards
+          } else {
+            // Swipe right - card anterior
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards
+          }
+          updateCarousels()
+        }
+      }
+    </script>
+
     <!-- QUARTA PAGINA (O que você vai viver no workshop) -------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="h-screen relative overflow-hidden px-24 flex flex-col"
-      style="
-        background-image: url('imgs/fundo-paola-degrade.jpg');
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-      "
+      class="relative overflow-hidden px-6 md:px-24 md:py-20 flex flex-col bg-workshop-desktop md:bg-workshop-desktop bg-workshop-mobile"
     >
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col items-center justify-center h-full max-w-6xl mx-auto pt-[20vh]"
+        class="content-overlay flex flex-col items-center justify-center h-full max-w-6xl md:mx-auto md:pt-[20vh] pt-[10vh]"
       >
         <!-- Título principal -->
         <h1
-          class="text-white text-4xl md:text-5xl font-bold text-center mb-16 leading-tight"
+          class="text-white text-2xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-16 leading-tight"
         >
           O QUE VOCÊ VAI VIVER NO<br />
           <span
-            class="inline-flex items-center gap-4 text-[#F9DBBD] font-Morally text-4xl md:text-7xl"
+            class="inline-flex items-center gap-2 md:gap-4 text-[#F9DBBD] font-Morally text-4xl lg:text-7xl flex-wrap justify-center"
           >
             <img
               src="imgs/icons/florzinha.svg"
               alt="flor"
-              class="h-12 w-auto"
+              class="h-6 md:h-12 w-auto"
             />
             WORKSHOP
             <img
               src="imgs/icons/florzinha.svg"
               alt="flor"
-              class="h-12 w-auto"
+              class="h-6 md:h-12 w-auto"
             />
           </span>
         </h1>
 
-        <!-- Card com conteúdo -->
-        <div class="bg-[#f291a6] rounded-3xl p-16 shadow-lg max-w-5xl w-full">
-          <!-- Subtítulo -->
-          <h2
-            class="text-burgundy text-3xl md:text-4xl font-bold mb-8 font-Morally"
-          >
-            AS DISTRAÇÕES DO DIA A DIA E O TREINO DO CORAÇÃO
-          </h2>
+        <!-- Subtítulo -->
+        <p
+          class="text-white text-xl md:text-3xl text-center md:mb-12 max-w-4xl !leading-normal"
+        >
+          Durante três aulas ao vivo, você vai
+          <strong
+            >despertar sua alma, organizar sua vida espiritual e aprender a
+            caminhar com Deus na rotina comum</strong
+          >.
+        </p>
 
-          <!-- Texto descritivo -->
-          <p class="text-xl md:text-2xl leading-relaxed">
-            Você vai reconhecer o que desvia sua atenção e aprender como
-            cultivar a presença de Deus por meio de disciplinas espirituais
-            possíveis e transformadoras.
-          </p>
+        <!-- Cards com imagens e conteúdo -->
+        <div class="space-y-10 md:space-y-16 w-full max-w-4xl py-10">
+          <!-- Card 1 - IDENTIFICAR -->
+          <div
+            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
+          >
+            <!-- Container da imagem - sobrepondo -->
+            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
+              <img
+                src="imgs/identificar.png"
+                alt="Identificar"
+                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
+              />
+            </div>
+
+            <!-- Card de conteúdo -->
+            <div
+              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
+            >
+              <div class="z-20">
+                <div
+                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
+                >
+                  <span
+                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
+                    >IDENTIFICAR</span
+                  >
+                </div>
+                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
+                  Você vai
+                  <strong
+                    >identificar o que tem roubado sua consistência</strong
+                  >
+                  e presença diante de Deus e o que faz você "dormir" na fé.
+                  <span class="hidden md:block"
+                    >Você terá um
+                    <strong>diagnóstico claro do seu momento espiritual</strong
+                    >.</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 - TRANSFORMAR -->
+          <div
+            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
+          >
+            <!-- Container da imagem - sobrepondo -->
+            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
+              <img
+                src="imgs/transformar.png"
+                alt="Transformar"
+                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
+              />
+            </div>
+
+            <!-- Card de conteúdo -->
+            <div
+              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
+            >
+              <div class="z-20">
+                <div
+                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
+                >
+                  <span
+                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
+                    >TRANSFORMAR</span
+                  >
+                </div>
+                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
+                  Você vai aprender a
+                  <strong
+                    >transformar a leitura da Bíblia e a oração em encontros
+                    reais com Deus</strong
+                  >, e não em tarefas religiosas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 - APLICAR -->
+          <div
+            class="relative flex flex-col md:flex-row items-center h-auto md:h-56"
+          >
+            <!-- Container da imagem - sobrepondo -->
+            <div class="absolute left-0 top-0 z-20 w-32 md:w-40 h-full">
+              <img
+                src="imgs/aplicar.png"
+                alt="Aplicar"
+                class="w-full h-full object-cover md:rounded-2xl md:scale-[115%] md:border-[3px] border-[#F291A6] rounded-tl-2xl rounded-bl-2xl z-0"
+              />
+            </div>
+
+            <!-- Card de conteúdo -->
+            <div
+              class="bg-[#F291A6] rounded-3xl shadow-lg w-full h-full flex items-center pl-36 md:pl-52 pr-4 md:pr-8 py-8"
+            >
+              <div class="z-20">
+                <div
+                  class="md:bg-[#8B1538] md:px-4 md:py-2 rounded-full inline-block mb-4 font-Morally"
+                >
+                  <span
+                    class="text-[1.6rem] md:text-3xl text-[#8B1538] md:text-[#FFCBD9] tracking-wider md:tracking-widest"
+                    >APLICAR</span
+                  >
+                </div>
+                <p class="text-[#8B1538] text-lg md:text-2xl !leading-snug">
+                  Você vai sair dessa aula com uma
+                  <strong>metodologia prática para seguir</strong>, mesmo nos
+                  dias corridos.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CRONOGRAMA DO WORKSHOP -------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- CRONOGRAMA DO WORKSHOP ---------------------------------------------------------------------------------------------------------------------------------------->
+
     <section
-      class="h-screen relative overflow-hidden px-24 bg-[#751133] flex flex-col items-center justify-center"
+      class="md:h-screen relative overflow-hidden px-12 md:px-24 bg-[#751133] flex flex-col items-center justify-center"
+      style="
+        background-image: url('imgs/pattern-home.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
     >
+      <!-- Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[#751133]/95 to-[#751133]/90"
+      ></div>
+
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col lg:flex-row items-center justify-center h-full max-w-6xl w-full"
+        class="relative z-10 flex flex-col lg:flex-row items-center justify-center h-full max-w-6xl w-full py-20 md:py-0"
       >
         <!-- Left Content -->
         <div
-          class="lg:w-1/2 text-white mb-8 lg:mb-0 lg:mt-6 flex flex-col justify-center"
+          class="w-full md:w-1/2 text-white mb-8 lg:mb-0 lg:mt-6 flex flex-col justify-center"
         >
           <!-- Logo e Data -->
           <div class="flex items-center mb-6">
-            <img src="imgs/icons/mvpd.svg" alt="flor" class="h-16 w-auto" />
+            <img
+              src="imgs/icons/mvpd.svg"
+              alt="flor"
+              class="h-12 md:h-16 w-auto"
+            />
             <div class="flex flex-col ml-3">
-              <p class="text-2xl font-semibold">01, 03 e 04 de Setembro</p>
-              <p class="text-xl italic">100% ao vivo pelo meeting</p>
+              <p class="text-lg md:text-2xl font-semibold">
+                01, 03 e 04 de Setembro
+              </p>
+              <p class="text-lg md:text-xl italic">100% ao vivo pelo meeting</p>
             </div>
           </div>
 
           <!-- Título principal -->
-          <h1 class="text-5xl lg:text-6xl font-bold mb-8">
+          <h1 class="text-3xl lg:text-6xl font-bold mb-8">
             CRONOGRAMA DO<br />
-            <span class="text-[#F9DBBD] font-normal font-Morally text-8xl"
+            <span
+              class="text-[#F9DBBD] font-normal font-Morally text-5xl md:text-8xl"
               >WORKSHOP</span
             >
           </h1>
 
           <!-- Subtítulo -->
-          <p class="text-xl lg:text-2xl italic">
+          <p class="text-md md:text-2xl italic">
             Todos os dias seguirão esse cronograma
           </p>
         </div>
 
         <!-- Right Content - Cronograma -->
-        <div class="lg:w-1/2 flex flex-col pl-[10vw]">
+        <div class="w-full md:w-1/2 flex flex-col md:pl-[10vw]">
           <!-- Ícone flor -->
-          <div class="mb-12">
+          <div class="mt-8 md:mt-0 md:mb-12 order-2 lg:order-1">
             <img
               src="imgs/icons/florzinha.svg"
               alt="flor decorativa"
-              class="h-20 w-auto"
+              class="h-16 md:h-20 w-auto"
             />
           </div>
 
           <!-- Horários -->
-          <div class="text-white space-y-4">
-            <div class="text-3xl lg:text-4xl font-light">
+          <div class="text-white space-y-2 md:space-y-4 order-1 lg:order-2">
+            <div class="text-2xl lg:text-4xl font-light">
               <span class="font-bold">19:30</span> - Início
             </div>
-            <div class="text-3xl lg:text-4xl font-light">
+            <div class="text-2xl lg:text-4xl font-light">
               <span class="font-bold">21:00</span> - Pausa
             </div>
-            <div class="text-3xl lg:text-4xl font-light">
+            <div class="text-2xl lg:text-4xl font-light">
               <span class="font-bold">21:15</span> - Retorno
             </div>
-            <div class="text-3xl lg:text-4xl font-light">
+            <div class="text-2xl lg:text-4xl font-light">
               <span class="font-bold">22:00</span> - Encerramento
             </div>
           </div>
@@ -621,54 +1074,51 @@
 
     <!-- NOVA SEÇÃO: PREÇOS DO WORKSHOP -------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="h-screen relative overflow-hidden px-24 flex flex-col items-center justify-center"
+      id="secao-precos"
+      class="md:h-screen relative overflow-hidden px-10 md:px-24 flex flex-col items-center justify-center py-20 md:py-0"
       style="background: linear-gradient(180deg, #751133 0%, #b91654 100%)"
     >
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col items-center justify-center h-4/5 max-w-5xl w-full"
+        class="relative z-10 flex flex-col items-center justify-center md:h-4/5 max-w-5xl w-full"
       >
         <!-- Título principal -->
         <h1
-          class="text-white text-5xl md:text-xl text-center leading-tight -mt-8"
+          class="text-white text-3xl md:text-5xl text-center leading-tight -mt-8"
         >
-          <span class="font-semibold md:text-5xl">QUANTO CUSTA O</span><br />
-          <span class="text-6xl md:text-7xl text-[#F9DBBD] font-Morally"
+          <span class="font-semibold">QUANTO CUSTA O</span><br />
+          <span class="text-5xl md:text-7xl text-[#F9DBBD] font-Morally"
             >WORKSHOP?</span
           >
         </h1>
 
         <!-- Card de preços -------------------------------------------------------------------------------------------------------------------------------------------------->
         <div
-          class="bg-[#F291A6] rounded-3xl p-12 shadow-2xl w-full max-w-5xl relative mt-10"
+          class="bg-[#F291A6] bg-opacity-90 rounded-3xl p-6 md:p-12 shadow-2xl w-full max-w-5xl relative mt-10"
         >
           <!-- Layout em duas colunas -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-8">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center mb-8"
+          >
             <!-- Coluna da Esquerda - Data e Preço -->
-            <div class="flex flex-col items-center">
-              <!-- Data e informações do evento -->
-              <div class="flex items-center">
-                <img
-                  src="imgs/calendar.svg"
-                  alt="calerdar"
-                  class="h-11 w-auto mr-5"
-                />
-                <div class="items-center text-burgundy mb-1">
-                  <span class="font-semibold text-xl"
-                    >01, 03 e 04 de Setembro</span
-                  >
-                  <p class="text-burgundy italic text-xl">
-                    100% ao vivo pelo meeting
-                  </p>
-                </div>
-              </div>
+            <div class="flex flex-col items-center justify-center h-full">
+              <img
+                src="imgs/logomarca.png"
+                alt="Minha Vida + Perto de Deus"
+                class="h-20 md:h-20 w-auto"
+              />
 
               <!-- Preço principal -->
               <div class="text-left">
-                <div
-                  class="text-burgundy font-semibold text-8xl md:text-7xl font-Morally leading-none tracking-widest"
+                <p
+                  class="text-burgundy line-through italic text-center pt-8 text-2xl"
                 >
-                  R$ 19,90
+                  R$97,00
+                </p>
+                <div
+                  class="text-burgundy font-semibold text-6xl md:text-6xl font-Morally leading-none tracking-widest mt-4 md:mt-0"
+                >
+                  R$ 24,90
                 </div>
               </div>
             </div>
@@ -692,7 +1142,9 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-lg">Acesso aos 3 encontros ao vivo</p>
+                <p class="text-lg !leading-snug md:!leading-normal">
+                  Acesso aos 3 encontros ao vivo
+                </p>
               </div>
 
               <!-- Benefício 2 -->
@@ -712,7 +1164,9 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-lg">Ensino teológico profundo e acessível</p>
+                <p class="text-lg !leading-snug md:!leading-normal">
+                  Ensino teológico profundo e acessível
+                </p>
               </div>
 
               <!-- Benefício 3 -->
@@ -732,7 +1186,9 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-lg">Um plano devocional prático (em PDF)</p>
+                <p class="text-lg !leading-snug md:!leading-normal">
+                  Um plano devocional prático (em PDF)
+                </p>
               </div>
 
               <!-- Benefício 4 -->
@@ -752,7 +1208,7 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-lg">
+                <p class="text-lg !leading-snug md:!leading-normal">
                   Materiais complementares para aplicar o conteúdo
                 </p>
               </div>
@@ -774,7 +1230,7 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-lg">
+                <p class="text-lg !leading-snug md:!leading-normal">
                   Um espaço leve, real e transformador para recomeçar com Deus
                 </p>
               </div>
@@ -782,9 +1238,26 @@
           </div>
 
           <!-- Botão de compra posicionado metade fora da box -->
-          <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+          <div
+            class="absolute w-full -bottom-6 left-1/2 transform -translate-x-1/2 flex justify-center"
+          >
             <button
-              class="bg-[#F9DBBD] hover:bg-yellow-100 text-burgundy text-3xl font-bold px-6 py-2 rounded-3xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally"
+              onclick="
+      try{
+        fbq('track', 'InitiateCheckout', {
+          value: 24.90, 
+          currency: 'BRL',
+          content_name: 'Workshop MVPD'
+        }); 
+        fbq('track', 'Lead');
+      }catch(e){}
+      
+      // Redirecionar após rastreamento
+      setTimeout(function(){
+        window.open('https://pay.zouti.com.br/checkout?product_offer_id=prod_offer_tvk6gu35bcy8w5zb4s67ab', '_blank');
+      }, 150);
+    "
+              class="inline-block bg-[#F9DBBD] hover:bg-yellow-100 text-burgundy text-2xl md:text-3xl font-bold px-6 py-2 rounded-3xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally text-center no-underline cursor-pointer border-none"
             >
               QUERO MEU INGRESSO
             </button>
@@ -793,9 +1266,9 @@
       </div>
     </section>
 
-    <!-- PAGINA DE DEPOIMENTOS -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- PAGINA DE DEPOIMENTOS -->
     <section
-      class="h-screen relative overflow-hidden px-24"
+      class="relative overflow-hidden px-6 md:px-24"
       style="
         background-image: url('imgs/pattern-flores.jpg');
         background-size: cover;
@@ -805,12 +1278,12 @@
     >
       <!-- Overlay for better text readability -->
       <div
-        class="absolute inset-0 bg-gradient-to-b from-[#f9dbbd]/30 via-[#f9dbbd]/60 to-[#f9dbbd]/100"
+        class="absolute inset-0 bg-gradient-to-b from-[#f9dbbd]/20 via-[#f9dbbd]/20 to-[#f9dbbd]/90"
       ></div>
 
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col items-center justify-center h-full max-w-6xl mx-auto"
+        class="relative z-10 flex flex-col items-center justify-center h-full max-w-6xl mx-auto py-16"
       >
         <!-- Título principal -->
         <h1
@@ -820,86 +1293,339 @@
           ENCONTRARAM LEVEZA, CONSTÂNCIA E PRESENÇA:
         </h1>
 
-        <!-- Grid de cards de depoimentos -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
-          <!-- Card Depoimento 1 -->
-          <div
-            class="bg-[#E8A5B8] rounded-3xl p-8 shadow-lg h-96 flex flex-col justify-between"
-          >
-            <!-- Aspas de abertura -->
-            <div class="text-6xl text-burgundy font-serif leading-none mb-4">
-              "
+        <div class="w-full flex justify-center items-center max-w-6xl">
+          <!-- Setas de navegação -->
+          <button id="prevBtnDepos" class="prev" style="opacity: 0.5">
+            <img
+              src="imgs/icons/seta.svg"
+              alt="seta"
+              class="h-8 w-auto md:mr-4 -mt-28 md:-mt-0 rotate-180"
+            />
+          </button>
+
+          <!-- Carrossel Container -->
+          <div class="carousel-container relative w-full max-w-5xl">
+            <!-- Layout Desktop -->
+            <div id="carouselDesktopDepoimentos" class="carousel-desktop">
+              <!-- Cards serão inseridos aqui pelo JavaScript -->
             </div>
 
-            <!-- Texto do depoimento -->
-            <div class="flex-1 flex flex-col justify-center">
-              <p class="text-burgundy text-lg leading-relaxed text-center">
-                <!-- Conteúdo do depoimento será adicionado aqui -->
-              </p>
-            </div>
+            <!-- Layout Mobile -->
+            <div id="carouselMobileDepoimentos" class="carousel-mobile">
+              <!-- Card principal -->
+              <div id="mainCardDepo" class="main-card">
+                <!-- Card content será inserido aqui -->
+              </div>
 
-            <!-- Nome da pessoa -->
-            <div class="text-center mt-4">
-              <p class="text-burgundy font-semibold text-xl">
-                <!-- Nome será adicionado aqui -->
-              </p>
+              <!-- Cards de preview -->
+              <div class="preview-cards mt-3 gap-[8%]">
+                <div
+                  id="previewCard1Depos"
+                  class="preview-card bg-[#FFF3E3]"
+                  onclick="goToCardDepoimentos(1)"
+                ></div>
+                <div
+                  id="previewCard2Depos"
+                  class="preview-card bg-[#FFF3E3]"
+                  onclick="goToCardDepoimentos(2)"
+                ></div>
+              </div>
             </div>
           </div>
 
-          <!-- Card Depoimento 2 -->
-          <div
-            class="bg-[#E8A5B8] rounded-3xl p-8 shadow-lg h-96 flex flex-col justify-between"
-          >
-            <!-- Aspas de abertura -->
-            <div class="text-6xl text-burgundy font-serif leading-none mb-4">
-              "
-            </div>
-
-            <!-- Texto do depoimento -->
-            <div class="flex-1 flex flex-col justify-center">
-              <p class="text-burgundy text-lg leading-relaxed text-center">
-                <!-- Conteúdo do depoimento será adicionado aqui -->
-              </p>
-            </div>
-
-            <!-- Nome da pessoa -->
-            <div class="text-center mt-4">
-              <p class="text-burgundy font-semibold text-xl">
-                <!-- Nome será adicionado aqui -->
-              </p>
-            </div>
-          </div>
-
-          <!-- Card Depoimento 3 -->
-          <div
-            class="bg-[#E8A5B8] rounded-3xl p-8 shadow-lg h-96 flex flex-col justify-between"
-          >
-            <!-- Aspas de abertura -->
-            <div class="text-6xl text-burgundy font-serif leading-none mb-4">
-              "
-            </div>
-
-            <!-- Texto do depoimento -->
-            <div class="flex-1 flex flex-col justify-center">
-              <p class="text-burgundy text-lg leading-relaxed text-center">
-                <!-- Conteúdo do depoimento será adicionado aqui -->
-              </p>
-            </div>
-
-            <!-- Nome da pessoa -->
-            <div class="text-center mt-4">
-              <p class="text-burgundy font-semibold text-xl">
-                <!-- Nome será adicionado aqui -->
-              </p>
-            </div>
-          </div>
+          <!-- Seta Próximo -->
+          <button id="nextBtnDepos" class="next">
+            <img
+              src="imgs/icons/seta.svg"
+              alt="seta"
+              class="h-8 w-auto md:ml-4 -mt-28 md:-mt-0"
+            />
+          </button>
         </div>
       </div>
     </section>
 
+    <!-- Modal para exibir imagem ampliada -->
+    <div id="imageModal" class="modal">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+        <img
+          id="modalImage"
+          class="modal-image"
+          src=""
+          alt="Depoimento ampliado"
+        />
+      </div>
+    </div>
+
+    <script>
+      // Dados dos cards (usando imagens de placeholder para demonstração)
+      const cardDataDepoimentos = [
+        {
+          nome: 'Depoimento 1',
+          imagem: '1',
+        },
+        {
+          nome: 'Depoimento 2',
+          imagem: '2',
+        },
+        {
+          nome: 'Depoimento 3',
+          imagem: '3',
+        },
+        {
+          nome: 'Depoimento 4',
+          imagem: '4',
+        },
+        {
+          nome: 'Depoimento 5',
+          imagem: '5',
+        },
+        {
+          nome: 'Depoimento 6',
+          imagem: '6',
+        },
+        {
+          nome: 'Depoimento 7',
+          imagem: '7',
+        },
+        {
+          nome: 'Depoimento 8',
+          imagem: '8',
+        },
+        {
+          nome: 'Depoimento 9',
+          imagem: '9',
+        },
+        {
+          nome: 'Depoimento 10',
+          imagem: '10',
+        },
+        {
+          nome: 'Depoimento 11',
+          imagem: '11',
+        },
+        {
+          nome: 'Depoimento 12',
+          imagem: '12',
+        },
+        {
+          nome: 'Depoimento 13',
+          imagem: '13',
+        },
+      ]
+
+      let currentIndexDepoimentos = 0
+      const totalCardsDepoimentos = cardDataDepoimentos.length
+
+      // Função para abrir o modal
+      function openModal(imageSrc, altText) {
+        const modal = document.getElementById('imageModal')
+        const modalImage = document.getElementById('modalImage')
+
+        modalImage.src = imageSrc
+        modalImage.alt = altText
+        modal.style.display = 'block'
+
+        // Prevenir scroll do body quando modal está aberto
+        document.body.style.overflow = 'hidden'
+      }
+
+      // Função para fechar o modal
+      function closeModal() {
+        const modal = document.getElementById('imageModal')
+        modal.style.display = 'none'
+
+        // Restaurar scroll do body
+        document.body.style.overflow = 'auto'
+      }
+
+      // Função para criar um card
+      function createCardDepo(data, isMain = false) {
+        const cardClass = isMain
+          ? 'card-content-depos'
+          : 'card-content-depos h-full'
+
+        // Para demonstração, vou usar imagens de placeholder
+        const imageSrc = `imgs/depoimentos/${data.imagem}.jpg`
+
+        return `
+          <div class="${cardClass}" onclick="openModal('${imageSrc}', '${data.nome}')">
+              <img
+                  src="${imageSrc}"
+                  alt="${data.nome}"
+                  class="h-auto w-auto object-cover cursor-pointer"
+              />
+              <div class="clickable-indicator">
+                  👆 Clique para ampliar
+              </div>
+          </div>
+      `
+      }
+
+      // Função para atualizar o carrossel mobile
+      function updateMobileCarouselDepo() {
+        const mainCardDepo = document.getElementById('mainCardDepo')
+        const previewCard1Depos = document.getElementById('previewCard1Depos')
+        const previewCard2Depos = document.getElementById('previewCard2Depos')
+
+        // Card principal (atual)
+        mainCardDepo.innerHTML = createCardDepo(
+          cardDataDepoimentos[currentIndexDepoimentos],
+          true,
+        )
+
+        // Cards de preview - vou simplificar para mostrar apenas números
+        const nextIndex1Depos =
+          (currentIndexDepoimentos + 1) % totalCardsDepoimentos
+        const nextIndex2Depos =
+          (currentIndexDepoimentos + 2) % totalCardsDepoimentos
+
+        previewCard1Depos.innerHTML = `<div class="flex flex-col"><img
+                          src="imgs/depoimentos/${cardDataDepoimentos[nextIndex1Depos].imagem}.jpg"
+                          alt="depo"
+                          class="h-auto w-auto object-cover"
+                        /></div>`
+
+        previewCard2Depos.innerHTML = `<div class="flex flex-col"><img
+                          src="imgs/depoimentos/${cardDataDepoimentos[nextIndex2Depos].imagem}.jpg"
+                          alt="depo"
+                          class="h-auto w-auto object-cover"
+                        /></div>`
+      }
+
+      // Função para atualizar o carrossel desktop
+      function updateDesktopCarouselDepo() {
+        const carouselDesktopDepoimentos = document.getElementById(
+          'carouselDesktopDepoimentos',
+        )
+        carouselDesktopDepoimentos.innerHTML = ''
+
+        // Mostrar 3 cards por vez no desktop
+        for (let i = 0; i < 3; i++) {
+          const cardIndex =
+            (currentIndexDepoimentos + i) % totalCardsDepoimentos
+          const cardDiv = document.createElement('div')
+          cardDiv.innerHTML = createCardDepo(
+            cardDataDepoimentos[cardIndex],
+            true,
+          )
+          carouselDesktopDepoimentos.appendChild(cardDiv)
+        }
+      }
+
+      // Função para ir para um card específico
+      function goToCardDepoimentos(offset) {
+        currentIndexDepoimentos =
+          (currentIndexDepoimentos + offset) % totalCardsDepoimentos
+        updateCarouselsDepoimentos()
+      }
+
+      // Função para atualizar ambos os carrosséis
+      function updateCarouselsDepoimentos() {
+        updateMobileCarouselDepo()
+        updateDesktopCarouselDepo()
+        updateArrowsDepo()
+      }
+
+      // Função para atualizar as setas
+      function updateArrowsDepo() {
+        const prevBtnDepos = document.getElementById('prevBtnDepos')
+        const nextBtnDepos = document.getElementById('nextBtnDepos')
+
+        // No mobile, sempre permitir navegação circular
+        prevBtnDepos.style.opacity = '1'
+        nextBtnDepos.style.opacity = '1'
+      }
+
+      // Event listeners para as setas
+      document
+        .getElementById('nextBtnDepos')
+        .addEventListener('click', function () {
+          currentIndexDepoimentos =
+            (currentIndexDepoimentos + 1) % totalCardsDepoimentos
+          updateCarouselsDepoimentos()
+        })
+
+      document
+        .getElementById('prevBtnDepos')
+        .addEventListener('click', function () {
+          currentIndexDepoimentos =
+            (currentIndexDepoimentos - 1 + totalCardsDepoimentos) %
+            totalCardsDepoimentos
+          updateCarouselsDepoimentos()
+        })
+
+      // Inicializar o carrossel
+      document.addEventListener('DOMContentLoaded', function () {
+        updateCarouselsDepoimentos()
+      })
+
+      // Suporte a gestos touch para mobile
+      let startXDepoimentos = 0
+      let endXDepoimentos = 0
+
+      document
+        .getElementById('carouselMobileDepoimentos')
+        .addEventListener('touchstart', function (e) {
+          startXDepoimentos = e.touches[0].clientX
+        })
+
+      document
+        .getElementById('carouselMobileDepoimentos')
+        .addEventListener('touchend', function (e) {
+          endXDepoimentos = e.changedTouches[0].clientX
+          handleSwipe()
+        })
+
+      function handleSwipe() {
+        const threshold = 50
+        const diff = startXDepoimentos - endXDepoimentos
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0) {
+            // Swipe left - próximo card
+            currentIndexDepoimentos =
+              (currentIndexDepoimentos + 1) % totalCardsDepoimentos
+          } else {
+            // Swipe right - card anterior
+            currentIndexDepoimentos =
+              (currentIndexDepoimentos - 1 + totalCardsDepoimentos) %
+              totalCardsDepoimentos
+          }
+          updateCarouselsDepoimentos()
+        }
+      }
+
+      // Event listeners para o modal
+
+      // Fechar modal ao clicar fora da imagem
+      document
+        .getElementById('imageModal')
+        .addEventListener('click', function (e) {
+          if (e.target === this) {
+            closeModal()
+          }
+        })
+
+      // Fechar modal com tecla ESC
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeModal()
+        }
+      })
+
+      // Prevenir propagação do clique na imagem do modal
+      document
+        .getElementById('modalImage')
+        .addEventListener('click', function (e) {
+          e.stopPropagation()
+        })
+    </script>
+
     <!-- PAGINA DE GARANTIA -------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="h-screen relative overflow-hidden px-24 bg-[#f9dbbd] flex flex-col items-center justify-center"
+      class="md:h-screen relative overflow-hidden px-10 md:px-24 bg-[#f9dbbd] flex flex-col items-center justify-center py-20 md:py-0"
     >
       <!-- Container principal -->
       <div
@@ -907,19 +1633,21 @@
       >
         <!-- Título principal -->
         <h1
-          class="text-burgundy text-4xl md:text-5xl font-bold text-center mb-16 leading-tight font-Morally"
+          class="text-burgundy text-4xl md:text-5xl font-bold text-center mb-10 md:mb-16 leading-tight font-Morally"
         >
           GARANTIA DE SATISFAÇÃO
         </h1>
 
         <!-- Container do conteúdo -->
-        <div class="flex flex-col lg:flex-row items-center gap-16 w-full">
+        <div
+          class="flex flex-col lg:flex-row items-center gap-10 md:gap-16 w-full"
+        >
           <!-- Lado esquerdo - Selo de garantia -->
           <div class="lg:w-1/2 flex justify-center">
             <img
               src="imgs/garantia.svg"
               alt="Selo de Garantia 100% Satisfaction"
-              class="h-80 w-auto"
+              class="h-40 md:h-80 w-auto"
             />
           </div>
 
@@ -959,7 +1687,7 @@
 
     <!-- SOBRE MIM PAGE ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="h-screen relative overflow-hidden px-24"
+      class="md:h-screen relative overflow-hidden px- md:px-24 pt-16 md:pt-0"
       style="
         background-image: url('imgs/pattern-home.png');
         background-size: cover;
@@ -974,20 +1702,24 @@
 
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col lg:flex-row items-center justify-center h-full max-w-[70vw] mx-auto"
+        class="relative z-10 flex flex-col lg:flex-row items-center justify-center h-full max-w-[80vw] md:max-w-[70vw] mx-auto"
       >
         <!-- Lado esquerdo - Conteúdo -->
-        <div class="lg:w-1/2 lg:pr-0 space-y-10 order-2 lg:order-1">
+        <div
+          class="lg:w-1/2 lg:pr-0 space-y-6 md:space-y-10 order-1 lg:order-1"
+        >
           <!-- Título -->
           <h1
-            class="text-burgundy text-4xl lg:text-4xl font-bold leading-tight font-Morally"
+            class="text-burgundy text-2xl lg:text-4xl font-bold leading-tight font-Morally text-center"
           >
-            QUEM CAMINHO COM VOCÊ<br />
-            <span class="text-4xl text-[#9c89b8]">Paola Muehlbauer</span>
+            QUEM CAMINHA COM VOCÊ<br />
+            <span class="text-3xl md:text-4xl text-[#9c89b8]"
+              >Paola Muehlbauer</span
+            >
           </h1>
 
           <!-- Texto principal -->
-          <div class="space-y-5 text-lg lg:text-xl leading-relaxed">
+          <div class="space-y-5 text-lg lg:text-xl leading-relaxed text-center">
             <p>
               Oi! Eu sou a Paola Muehlbauer. Sou teóloga, escritora e
               idealizadora do<span class="font-bold">
@@ -1015,28 +1747,11 @@
               <span class="font-bold">esse workshop é pra você</span>.
             </p>
           </div>
-
-          <!-- Elemento decorativo/destaque -->
-          <!-- <div class="flex items-center mt-8">
-            <img
-              src="imgs/icons/florzinha.svg"
-              alt="flor decorativa"
-              class="h-8 w-auto mr-3"
-            />
-            <p class="text-burgundy font-semibold italic text-lg">
-              "Uma espiritualidade que cabe na sua rotina"
-            </p>
-            <img
-              src="imgs/icons/florzinha.svg"
-              alt="flor decorativa"
-              class="h-8 w-auto ml-3"
-            />
-          </div> -->
         </div>
 
         <!-- Lado direito - Imagem -->
         <div
-          class="lg:w-1/2 flex justify-center lg:justify-end mb-8 lg:mb-0 order-1 lg:order-2"
+          class="lg:w-1/2 flex justify-center lg:justify-end mb-8 lg:mb-0 order-2 lg:order-2 mt-6"
         >
           <img
             src="imgs/sobre-mim.png"
@@ -1047,17 +1762,17 @@
       </div>
     </section>
 
-    <!-- PAGINA DE GARANTIA -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- PAGINA DE FAQ -------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section
-      class="relative overflow-hidden px-24 py-24 bg-[#eaa5ab] flex flex-col items-center justify-center"
+      class="relative overflow-hidden px-6 md:px-24 py-14 md:py-24 bg-[#eaa5ab] flex flex-col items-center justify-center"
     >
       <!-- Container principal -->
       <div
-        class="relative z-10 flex flex-col justify-center h-full max-w-[70vw] mx-auto"
+        class="relative z-10 flex flex-col justify-center h-full max-w-[80vw] md:max-w-[70vw] mx-auto"
       >
         <!-- Título principal -->
         <h1
-          class="text-burgundy text-4xl md:text-5xl font-bold mb-16 leading-tight font-Morally"
+          class="text-burgundy text-2xl md:text-5xl font-bold mb-10 md:mb-16 leading-tight font-Morally"
         >
           FAQ - TIRE SUAS DÚVIDAS AQUI
         </h1>
@@ -1306,6 +2021,71 @@
       </div>
     </section>
 
+    <!-- RODAPÉ -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <footer class="bg-[#f9dbbd] py-6 px-10 md:px-24">
+      <div
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <img
+            src="imgs/logo_footer.png"
+            alt="Ministério Papo de Pijama"
+            class="h-36 w-auto"
+          />
+        </div>
+
+        <!-- Informações do ministério -->
+        <div class="text-center">
+          <h3 class="text-burgundy font-semibold text-xl mb-2">
+            Ministério Papo de Pijama
+          </h3>
+          <p class="text-burgundy text-lg mb-1">
+            Paola Milbauer CNPJ: 38.285.769/0001-76
+          </p>
+          <p class="text-burgundy text-lg">2025 © Israel Felipe Teixeira</p>
+        </div>
+
+        <!-- Lado direito - Ícones das redes sociais -->
+        <div class="flex space-x-4 my-4 md:my-0">
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/paolamilbauer/"
+            class="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="w-8 h-8 text-[#E4405F]"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a
+            href="https://www.youtube.com/@paolamilbauer"
+            class="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="w-8 h-8 text-[#FF0000]"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
     <script>
       // Função para verificar se elemento está visível no viewport
       function isElementInViewport(el) {
@@ -1404,40 +2184,6 @@
         observer.observe(document.getElementById('workshop-section'))
       }
 
-      // Funcionalidade do Carrossel
-      document.addEventListener('DOMContentLoaded', function () {
-        const carouselWrapper = document.getElementById('carouselWrapper')
-        const prevBtn = document.getElementById('prevBtn')
-        const nextBtn = document.getElementById('nextBtn')
-        let currentSlide = 0
-
-        function updateCarousel() {
-          const translateX = currentSlide * -50 // -50% para cada slide
-          carouselWrapper.style.transform = `translateX(${translateX}%)`
-
-          // Atualiza visibilidade das setas
-          prevBtn.style.opacity = currentSlide === 0 ? 0 : 100
-          nextBtn.style.opacity = currentSlide === 1 ? 0 : 100
-        }
-
-        nextBtn.addEventListener('click', function () {
-          if (currentSlide < 1) {
-            currentSlide++
-            updateCarousel()
-          }
-        })
-
-        prevBtn.addEventListener('click', function () {
-          if (currentSlide > 0) {
-            currentSlide--
-            updateCarousel()
-          }
-        })
-
-        // Inicializa o carrossel
-        updateCarousel()
-      })
-
       function toggleFAQ(button) {
         const faqItem = button.parentElement
         const answer = faqItem.querySelector('.faq-answer')
@@ -1465,6 +2211,47 @@
           faqItem.classList.add('active')
         }
       }
+    </script>
+
+    <script>
+      // Rastreamento - pixel do facebook - por scroll
+      let scrolled25 = false,
+        scrolled50 = false,
+        scrolled75 = false,
+        scrolled100 = false
+
+      window.addEventListener('scroll', function () {
+        let scrollPercent =
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+          100
+
+        if (scrollPercent >= 25 && !scrolled25) {
+          fbq('trackCustom', 'ScrolledTo25')
+          scrolled25 = true
+        }
+        if (scrollPercent >= 50 && !scrolled50) {
+          fbq('trackCustom', 'ScrolledTo50')
+          scrolled50 = true
+        }
+        if (scrollPercent >= 75 && !scrolled75) {
+          fbq('trackCustom', 'ScrolledTo75')
+          scrolled75 = true
+        }
+        if (scrollPercent >= 100 && !scrolled100) {
+          fbq('trackCustom', 'ScrolledTo100')
+          scrolled100 = true
+        }
+      })
+
+      // Rastrear quando ficam mais de 30 segundos
+      setTimeout(function () {
+        fbq('trackCustom', 'TimeOnPage30s')
+      }, 30000)
+
+      // Rastrear quando ficam mais de 60 segundos
+      setTimeout(function () {
+        fbq('trackCustom', 'TimeOnPage60s')
+      }, 60000)
     </script>
   </body>
 </html>
