@@ -210,7 +210,7 @@
           left: 0;
           right: 0;
           height: 40vh; /* Ajuste esta altura conforme necessário */
-          background-image: url('imgs/fundo-paola-degrade.jpg');
+          /* background-image: url('imgs/fundo-paola-degrade.jpg'); */
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;
@@ -353,7 +353,7 @@
   <body class="bg-white text-gray-900">
     <!-- PROMESSA (HOME PAGE) - Ajustada para Mobile -->
     <section
-      class="h-screen relative overflow-hidden md:px-24"
+      class="md:min-h-screen relative overflow-hidden md:px-24"
       style="
         background-image: url('imgs/pattern-home.png');
         background-size: cover;
@@ -368,11 +368,11 @@
 
       <!-- Container principal -->
       <div
-        class="container mx-auto px-6 md:px-6 md:pt-6 relative z-10 min-h-screen flex flex-col justify-center"
+        class="container mx-auto px-4 md:px-6 pt-6 relative z-10 min-h-screen flex flex-col"
       >
         <!-- Header -->
         <header
-          class="flex flex-col md:flex-row justify-between items-start md:items-start mb-8 md:mb-0 md:pt-10"
+          class="flex flex-col md:flex-row justify-between items-start md:items-start mb-8 md:mb-0 pt-6 md:pt-10"
         >
           <!-- Logo -->
           <div
@@ -381,7 +381,7 @@
             <img
               src="imgs/logomarca.png"
               alt="Minha Vida + Perto de Deus"
-              class="h-16 md:h-16 w-auto"
+              class="h-12 md:h-16 w-auto"
             />
           </div>
 
@@ -393,10 +393,10 @@
               class="flex items-center text-burgundy mb-1 order-2 md:order-1"
             >
               <div class="text-center md:text-right">
-                <span class="font-semibold text-xl md:text-base block"
+                <span class="font-semibold text-lg md:text-base block"
                   >01, 03 e 04 de Setembro</span
                 >
-                <p class="text-burgundy italic text-lg md:text-sm">
+                <p class="text-burgundy italic text-base md:text-sm">
                   100% ao vivo pelo meeting
                 </p>
               </div>
@@ -411,13 +411,13 @@
 
         <!-- Main Content -->
         <div
-          class="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center md:flex-1 relative px-5 md:px-0"
+          class="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center flex-1 relative px-5 md:px-0"
         >
           <!-- Left Content -->
           <div class="z-20 text-center lg:text-left lg:order-1">
             <!-- Main Headline -->
             <h1
-              class="text-3xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-6 lg:mb-8 font-Morally leading-tight"
+              class="text-2xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-6 lg:mb-8 font-Morally leading-tight"
             >
               3 AULAS PARA SE APROXIMAR DE DEUS COM LEVEZA E CONSTÂNCIA, CRIANDO
               UM PLANO QUE CABE NA SUA ROTINA
@@ -456,7 +456,7 @@
           </div>
 
           <!-- Right Content - Image Container (Desktop) -->
-          <div class="relative h-full w-full order-2 hidden lg:block">
+          <div class="relative h-full w-full order-2 hidden md:block">
             <div class="absolute bottom-0 left-[10%] h-full w-full">
               <img
                 src="imgs/paola-home.png"
@@ -468,7 +468,7 @@
           </div>
         </div>
         <!-- Mobile Image - Positioned at bottom -->
-        <!-- <div class="relative md:hidden h-full w-full mt-auto">
+        <div class="relative md:hidden h-full w-full mt-auto">
           <div class="flex">
             <img
               src="imgs/paola-home.png"
@@ -476,7 +476,7 @@
               class="h-full object-contain object-bottom"
             />
           </div>
-        </div> -->
+        </div>
       </div>
     </section>
 
