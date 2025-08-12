@@ -2726,11 +2726,16 @@
         }
       }
 
-      // Inicializar quando o DOM estiver carregado
+      // Inicializar quando o DOM estiver carregado - analytics do vercel
       document.addEventListener('DOMContentLoaded', function () {
         animateWorkshopSection()
         createWorkshopObserver()
       })
+    </script>
+
+    <script type="module">
+      import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@latest/+esm'
+      injectSpeedInsights()
     </script>
   </body>
 </html>
