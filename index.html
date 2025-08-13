@@ -739,7 +739,7 @@
           <div class="z-20 text-center lg:text-left lg:order-1">
             <!-- Main Headline -->
             <h1
-              class="animate-title text-2xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-6 lg:mb-8 font-Morally leading-tight uppercase"
+              class="animate-title text-2xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-6 lg:mb-8 font-Morally !leading-tight uppercase"
             >
               Transforme oração, leitura e meditação em hábitos diários — sem
               culpa, peso ou metas impossíveis
@@ -754,27 +754,47 @@
             </p>
 
             <!-- CTA Button -->
-            <button
-              id="cta-button"
-              onclick="
-                try{
-                  fbq('track', 'InitiateCheckout', {
-                    value: 24.90, 
-                    currency: 'BRL',
-                    content_name: 'Workshop MVPD'
-                  }); 
-                  fbq('track', 'Lead');
-                }catch(e){}
-                
-                // Redirecionar após rastreamento
-                setTimeout(function(){
-                  window.open('https://pay.zouti.com.br/checkout?product_offer_id=prod_offer_flp18r987efaku2leavzud', '_blank');
-                }, 150);
-              "
-              class="animate-cta cta-button-fade bg-burgundy hover:bg-red-800 text-white text-xl lg:text-2xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally w-full sm:w-auto"
-            >
-              QUERO MEU INGRESSO
-            </button>
+            <div class="animate-cta flex flex-col items-center gap-3">
+              <button
+                id="cta-button"
+                onclick="
+      try{
+        fbq('track', 'InitiateCheckout', {
+          value: 24.90, 
+          currency: 'BRL',
+          content_name: 'Workshop MVPD'
+        }); 
+        fbq('track', 'Lead');
+      }catch(e){}
+      
+      setTimeout(function(){
+        window.open('https://pay.zouti.com.br/checkout?product_offer_id=prod_offer_flp18r987efaku2leavzud', '_blank');
+      }, 150);
+    "
+                class="cta-button-fade bg-burgundy hover:bg-red-800 text-white text-xl lg:text-4xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally w-full sm:w-auto"
+              >
+                QUERO MEU INGRESSO
+              </button>
+
+              <div
+                class="flex items-center gap-2 bg-red-50 px-3 py-1 rounded-full border border-red-200"
+              >
+                <div
+                  class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                ></div>
+                <span class="text-red-600 font-medium text-xl"
+                  >Fim do 1º Lote em:</span
+                >
+                <span
+                  id="countdown-discrete"
+                  class="font-mono font-bold text-red-700 text-xl"
+                  >--:--:--</span
+                >
+                <div
+                  class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                ></div>
+              </div>
+            </div>
           </div>
 
           <!-- Right Content - Image Container (Desktop) -->
@@ -2742,6 +2762,61 @@
     <script type="module">
       import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@latest/+esm'
       injectSpeedInsights()
+    </script>
+
+    <!-- SCRIPT PARA A CONTAGEM REGRESSIVA -->
+    <script>
+      function startDiscreteCountdown() {
+        // Data alvo: 14/08/2025 às 00:00 (horário de Brasília - UTC-3)
+        const targetDate = new Date('2025-08-14T00:00:00-03:00').getTime()
+
+        const countdownElement = document.getElementById('countdown-discrete')
+
+        function updateCountdown() {
+          const now = new Date().getTime()
+          const timeLeft = targetDate - now
+
+          if (timeLeft <= 0) {
+            // Quando expirar, esconder o elemento ou mostrar mensagem discreta
+            const parentContainer =
+              countdownElement.closest('.animate-fade-up-delayed-3') ||
+              countdownElement.closest('div')
+            if (parentContainer) {
+              parentContainer.innerHTML =
+                '<div class="text-center"><span class="text-sm text-red-600 font-semibold bg-yellow-100 px-3 py-1 rounded-full">🔥 2º Lote Ativo</span></div>'
+            }
+            return
+          }
+
+          // Calcular horas, minutos e segundos
+          const hours = Math.floor(
+            (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          )
+          const minutes = Math.floor(
+            (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
+          )
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000)
+
+          // Formatar com zero à esquerda
+          const formattedTime =
+            String(hours).padStart(2, '0') +
+            ':' +
+            String(minutes).padStart(2, '0') +
+            ':' +
+            String(seconds).padStart(2, '0')
+
+          countdownElement.textContent = formattedTime
+        }
+
+        // Atualizar imediatamente
+        updateCountdown()
+
+        // Atualizar a cada segundo
+        setInterval(updateCountdown, 1000)
+      }
+
+      // Iniciar a contagem quando a página carregar
+      document.addEventListener('DOMContentLoaded', startDiscreteCountdown)
     </script>
   </body>
 </html>
