@@ -2765,14 +2765,14 @@
     <!-- SCRIPT PARA A CONTAGEM REGRESSIVA -->
     <script>
       function startDiscreteCountdown() {
-        // Data alvo: 14/08/2025 às 00:00 (horário de Brasília - UTC-3)
-        const targetDate = new Date('2025-08-14T00:00:00-03:00').getTime()
+        // Criar a data alvo: 18/08/2025 às 00:00 no horário de Brasília
+        const targetDate = new Date(2025, 7, 18, 0, 0, 0) // Mês é 0-indexado, então agosto = 7
 
         const countdownElement = document.getElementById('countdown-discrete')
 
         function updateCountdown() {
-          const now = new Date().getTime()
-          const timeLeft = targetDate - now
+          const now = new Date()
+          const timeLeft = targetDate.getTime() - now.getTime()
 
           if (timeLeft <= 0) {
             // Quando expirar, esconder o elemento ou mostrar mensagem discreta
@@ -2786,7 +2786,8 @@
             return
           }
 
-          // Calcular horas, minutos e segundos
+          // Calcular dias, horas, minutos e segundos
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
           const hours = Math.floor(
             (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
           )
@@ -2795,13 +2796,21 @@
           )
           const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000)
 
-          // Formatar com zero à esquerda
-          const formattedTime =
-            String(hours).padStart(2, '0') +
-            ':' +
-            String(minutes).padStart(2, '0') +
-            ':' +
-            String(seconds).padStart(2, '0')
+          // Formatar o tempo considerando os dias
+          let formattedTime = ''
+          if (days > 0) {
+            formattedTime = `${days}d ${String(hours).padStart(
+              2,
+              '0',
+            )}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
+              2,
+              '0',
+            )}`
+          } else {
+            formattedTime = `${String(hours).padStart(2, '0')}:${String(
+              minutes,
+            ).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+          }
 
           countdownElement.textContent = formattedTime
         }
