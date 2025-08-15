@@ -675,7 +675,7 @@
   <body class="bg-white text-gray-900">
     <!-- PROMESSA (HOME PAGE) - Com Animações -->
     <section
-      class="md:min-h-screen relative overflow-hidden md:px-16"
+      class="md:min-h-screen relative overflow-hidden md:px-24"
       style="
         background-image: url('imgs/pattern-home.png');
         background-size: cover;
@@ -739,59 +739,69 @@
           <div class="z-20 text-center lg:text-left lg:order-1">
             <!-- Main Headline -->
             <h1
-              class="animate-title text-2xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-6 lg:mb-8 font-Morally !leading-tight uppercase"
+              class="animate-title text-xl lg:text-3xl xl:text-4xl font-semibold text-burgundy mb-4 lg:mb-8 font-Morally !leading-snug uppercase"
             >
-              Transforme oração, leitura e meditação em hábitos diários — sem
-              culpa, peso ou metas impossíveis
+              3 dias para renovar sua vida espiritual e criar hábitos que
+              aproximam você de Deus
             </h1>
 
             <!-- Subtitle -->
             <p
               class="animate-subtitle text-md lg:text-2xl text-gray-700 mb-8 lg:mb-14 leading-relaxed"
             >
-              Uma metodologia prática e validada para te aproximar de Deus e
-              viver uma espiritualidade que faz sentido na vida real.
+              Uma metodologia prática e validada para renovar sua fé, cultivar
+              hábitos espirituais e perceber a presença de Deus de forma
+              concreta no dia a dia
             </p>
 
             <!-- CTA Button -->
-            <div class="animate-cta flex flex-col items-center gap-3">
+            <div class="animate-cta flex flex-col gap-3 w-w-auto md:w-[80%]">
               <button
                 id="cta-button"
                 onclick="
-      try{
-        fbq('track', 'InitiateCheckout', {
-          value: 24.90, 
-          currency: 'BRL',
-          content_name: 'Workshop MVPD'
-        }); 
-        fbq('track', 'Lead');
-      }catch(e){}
-      
-      setTimeout(function(){
-        window.open('https://pay.zouti.com.br/checkout?product_offer_id=prod_offer_flp18r987efaku2leavzud', '_blank');
-      }, 150);
-    "
-                class="cta-button-fade bg-burgundy hover:bg-red-800 text-white text-xl lg:text-4xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl font-Morally w-full sm:w-auto"
+                    try{
+                      fbq('track', 'InitiateCheckout', {
+                        value: 24.90, 
+                        currency: 'BRL',
+                        content_name: 'Workshop MVPD'
+                      }); 
+                      fbq('track', 'Lead');
+                    }catch(e){}
+                    
+                    setTimeout(function(){
+                      window.open('https://pay.zouti.com.br/checkout?product_offer_id=prod_offer_flp18r987efaku2leavzud', '_blank');
+                    }, 150);
+                  "
+                class="cta-button-fade bg-burgundy hover:bg-red-800 text-white text-xl lg:text-4xl px-6 py-3 lg:py-2 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-full sm:w-auto"
               >
-                QUERO MEU INGRESSO
+                <span class="font-Morally mr-2">COMPRAR MEU INGRESSO</span>
               </button>
 
               <div
-                class="flex items-center justify-around gap-2 bg-red-50 px-3 py-1 rounded-full border border-red-200 w-full md:w-auto"
+                class="flex items-center justify-center gap-2 px-3 py-1 rounded-full w-full md:w-auto"
               >
                 <div
-                  class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                  class="w-1.5 h-1.5 bg-[#DD324F] rounded-full animate-pulse hidden md:flex"
                 ></div>
-                <span class="text-red-600 font-medium text-lg md:text-xl"
-                  >Fim do 1º Lote em:</span
-                >
-                <span
-                  id="countdown-discrete"
-                  class="font-mono font-bold text-red-700 text-lg md:text-xl"
-                  >--:--:--</span
-                >
+                <div class="flex flex-col md:flex-row">
+                  <span class="text-burgundy font-medium text-lg md:text-xl"
+                    >Lote 1: <strong>R$24,90</strong> |</span
+                  >
+                  <div>
+                    <span
+                      class="text-burgundy font-medium text-lg md:text-xl pl-1 md:ml-0"
+                    >
+                      Termina em:</span
+                    >
+                    <span
+                      id="countdown-discrete"
+                      class="font-bold text-burgundy text-lg md:text-xl"
+                      >-- : --:--</span
+                    >
+                  </div>
+                </div>
                 <div
-                  class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                  class="w-1.5 h-1.5 bg-[#DD324F] rounded-full animate-pulse hidden md:flex"
                 ></div>
               </div>
             </div>
@@ -2454,27 +2464,27 @@
       </div>
     </footer>
     <script>
-      // Alternância do texto do botão CTA com efeito fade
-      const ctaButton = document.getElementById('cta-button')
-      const texts = ['QUERO MEU INGRESSO', 'LOTE 1 - APENAS R$ 24,90']
-      let currentTextIndex = 0
+      // // Alternância do texto do botão CTA com efeito fade
+      // const ctaButton = document.getElementById('cta-button')
+      // const texts = ['QUERO MEU INGRESSO', 'LOTE 1 - APENAS R$ 24,90']
+      // let currentTextIndex = 0
 
-      function switchButtonText() {
-        // Inicia o fade out
-        ctaButton.classList.add('fading')
+      // function switchButtonText() {
+      //   // Inicia o fade out
+      //   ctaButton.classList.add('fading')
 
-        // Após 150ms (metade da transição), troca o texto
-        setTimeout(() => {
-          currentTextIndex = (currentTextIndex + 1) % texts.length
-          ctaButton.textContent = texts[currentTextIndex]
+      //   // Após 150ms (metade da transição), troca o texto
+      //   setTimeout(() => {
+      //     currentTextIndex = (currentTextIndex + 1) % texts.length
+      //     ctaButton.textContent = texts[currentTextIndex]
 
-          // Remove o fade, fazendo o fade in
-          ctaButton.classList.remove('fading')
-        }, 150)
-      }
+      //     // Remove o fade, fazendo o fade in
+      //     ctaButton.classList.remove('fading')
+      //   }, 150)
+      // }
 
-      // Iniciar a alternância a cada 5 segundos
-      setInterval(switchButtonText, 4000)
+      // // Iniciar a alternância a cada 5 segundos
+      // setInterval(switchButtonText, 4000)
 
       // Função para verificar se elemento está visível no viewport
       function isElementInViewport(el) {
